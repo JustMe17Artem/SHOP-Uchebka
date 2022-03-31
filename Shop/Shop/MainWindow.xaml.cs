@@ -23,6 +23,8 @@ namespace Shop
         public MainWindow()
         {
             InitializeComponent();
+
+
         }
     }
 }
