@@ -19,3 +19,5 @@ C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Shop.csproj.CoreC
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Shop.csproj.CopyComplete
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Shop.exe
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Shop.pdb
+C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\AuthoPage.g.cs
+C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\AuthoPage.baml

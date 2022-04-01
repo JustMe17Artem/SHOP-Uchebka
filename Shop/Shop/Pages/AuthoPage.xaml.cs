@@ -13,17 +13,25 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Shop
+namespace Shop.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for AuthoPage.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class AuthoPage : Page
     {
-        public MainWindow()
+        public AuthoPage()
         {
             InitializeComponent();
-            AuthoPage.NavigationService.Navigate(new Pages.AuthoPage());
+        }
+
+        private void BtnRegistrate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnAuthorize_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

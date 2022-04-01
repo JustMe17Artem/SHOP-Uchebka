@@ -1,0 +1,54 @@
+﻿<Page x:Class="Shop.Pages.AuthoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Shop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AuthoPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        
+        <TextBox x:Name="TBLogin" 
+                 Width="350"
+                 Grid.ColumnSpan="3"
+                 Height="60"
+                 Grid.Row="1"
+                 FontSize="20"/>
+        
+        <TextBox x:Name="TBPassword" 
+                 Width="350"
+                 Grid.ColumnSpan="3"
+                 Height="60"
+                 Grid.Row="2"
+                 FontSize="20"/>
+
+
+        <Button x:Name="BtnAuthorize"
+                Grid.Column="0" 
+                Grid.Row="4" 
+                Content="Войти" 
+                Click="BtnAuthorize_Click"/>
+        
+        <Button x:Name="BtnRegistrate"
+                Grid.Column="4"
+                Grid.Row="4" 
+                Content="Зарегестрироваться"
+                Click="BtnRegistrate_Click"/>
+    </Grid>
+</Page>

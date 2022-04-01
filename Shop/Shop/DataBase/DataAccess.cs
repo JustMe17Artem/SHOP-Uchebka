@@ -15,5 +15,6 @@ namespace Shop.DataBase
             ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product);
             return products;
         }
+
     }
 }
