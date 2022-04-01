@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Shop.DataBase;
 
 namespace Shop.Pages
 {
@@ -32,7 +33,16 @@ namespace Shop.Pages
 
         private void BtnAuthorize_Click(object sender, RoutedEventArgs e)
         {
-
+            string login = TBLogin.Text;
+            string password = TBPassword.Text;
+            if(DataAccess.IsCorrectUser(login, password))
+            {
+                MessageBox.Show("Добро пожаловать");
+            }
+            else
+            {
+                MessageBox.Show("Нет такогопользователя");
+            }
         }
     }
 }
