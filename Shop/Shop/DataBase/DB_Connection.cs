@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Shop.my_ado;
 
 namespace Shop.DataBase
 {
-    class DB_Connection
+    public class DB_Connection
     {
+        public static SHOPEntities connection = new SHOPEntities();
     }
 }

@@ -47,6 +47,8 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -73,12 +75,77 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="DataBase\DataAccess.cs" />
+    <Compile Include="DataBase\DB_Connection.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="my_ado\Client.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\Country.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\Gender.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\my_model.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>my_model.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\my_model.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\my_model.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>my_model.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\Order.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\Product.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\ProductCountry.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\ProductIntake.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\ProductIntakeProduct.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\ProductOrder.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\Role.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\StatusIntake.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\StatusOrder.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\Supplier.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\Unit.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\User.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="my_ado\Worker.cs">
+      <DependentUpon>my_model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +163,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <EntityDeploy Include="my_ado\my_model.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>my_model.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="my_ado\my_model.edmx.diagram">
+      <DependentUpon>my_model.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -105,8 +179,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="my_ado\" />
+    <Content Include="my_ado\my_model.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>my_model.edmx</DependentUpon>
+      <LastGenOutput>my_model.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="my_ado\my_model.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>my_model.edmx</DependentUpon>
+      <LastGenOutput>my_model.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
