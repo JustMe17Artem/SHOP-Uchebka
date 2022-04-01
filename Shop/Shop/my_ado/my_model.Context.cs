@@ -41,5 +41,7 @@ namespace Shop.my_ado
         public virtual DbSet<Unit> Unit { get; set; }
         public virtual DbSet<User> User { get; set; }
         public virtual DbSet<Worker> Worker { get; set; }
+        public virtual DbSet<BanSession> BanSession { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

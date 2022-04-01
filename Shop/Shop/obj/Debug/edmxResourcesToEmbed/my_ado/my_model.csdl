@@ -461,5 +461,25 @@
       <End Role="User" EntitySet="User" />
       <End Role="Worker" EntitySet="Worker" />
     </AssociationSet>
+    <EntitySet Name="BanSession" EntityType="SHOPModel.BanSession" />
+    <EntitySet Name="sysdiagrams" EntityType="SHOPModel.sysdiagrams" />
   </EntityContainer>
+  <EntityType Name="BanSession">
+    <Key>
+      <PropertyRef Name="IdSession" />
+    </Key>
+    <Property Name="IdSession" Type="Int32" Nullable="false" />
+    <Property Name="DateStart" Type="DateTime" Precision="3" />
+    <Property Name="DateEnd" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
 </Schema>

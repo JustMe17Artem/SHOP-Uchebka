@@ -23,30 +23,50 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        <TextBlock Text="Логин" 
+                   Grid.Row="1" 
+                   FontSize="20" 
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="Пароль" 
+                   Grid.Row="2" 
+                   FontSize="20" 
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
         
         <TextBox x:Name="TBLogin" 
-                 Width="350"
-                 Grid.ColumnSpan="3"
-                 Height="60"
+                 Width="300"
+                 Grid.ColumnSpan="5"
+                 Height="40"
                  Grid.Row="1"
                  FontSize="20"/>
         
         <TextBox x:Name="TBPassword" 
-                 Width="350"
-                 Grid.ColumnSpan="3"
-                 Height="60"
+                 Width="300"
+                 Grid.ColumnSpan="5"
+                 Height="40"
                  Grid.Row="2"
                  FontSize="20"/>
-
+        <CheckBox x:Name="RememberUser"
+                  IsChecked="True"
+                  Grid.Row="3"
+                  Content="Запомнить меня"
+                  Grid.Column ="2"/>
 
         <Button x:Name="BtnAuthorize"
-                Grid.Column="0" 
-                Grid.Row="4" 
+                Grid.Column="1"
+                Grid.ColumnSpan="3"
+                Grid.Row="3" 
+                Height="40"
+                Width="120"
                 Content="Войти" 
                 Click="BtnAuthorize_Click"/>
         
         <Button x:Name="BtnRegistrate"
-                Grid.Column="4"
+                Grid.Column="5"
                 Grid.Row="4" 
                 Content="Зарегестрироваться"
                 Click="BtnRegistrate_Click"/>

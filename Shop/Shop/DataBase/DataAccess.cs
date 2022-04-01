@@ -21,6 +21,25 @@ namespace Shop.DataBase
             var currentUser = users.Where(u => u.Login == login && u.Password == password).ToList();
             return currentUser.Count == 1;
         }
+        public static bool IsIncorrectUser(string login, string password)
+        {
+            ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
+            var currentUser = users.Where(u => u.Login == login && u.Password == password).ToList();
+            return currentUser.Count == 0;
+        }
+        public static bool StartBan(BanSession session)
+        {
+            try
+            {
+                DB_Connection.connection.BanSession.Add(session);
+                DB_Connection.connection.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public static User GetUser(string login, string password)
         {
             ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
