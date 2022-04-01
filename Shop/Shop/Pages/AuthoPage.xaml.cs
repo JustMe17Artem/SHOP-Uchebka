@@ -23,18 +23,17 @@ namespace Shop.Pages
     /// </summary>
     public partial class AuthoPage : Page
     {
-        public int IncorrectTry = 0;
+        private int IncorrectTry = 0;
         public AuthoPage()
         {
             InitializeComponent();
             ObservableCollection<BanSession> sessions = new ObservableCollection<BanSession>(DB_Connection.connection.BanSession);
-            var lastBanSession = sessions.Where(u => true).Last();
+            var lastBanSession = sessions.Last();
             if(DateTime.Now < lastBanSession.DateEnd)
             {
                 BlockComponents();
             }
             TBLogin.Text = Properties.Settings.Default.Login;
-            
         }
         private void BlockComponents()
         {
@@ -43,22 +42,23 @@ namespace Shop.Pages
 
         private void BtnRegistrate_Click(object sender, RoutedEventArgs e)
         {
-
+           NavigationService.Navigate(new RegPage());
         }
 
         private void BtnAuthorize_Click(object sender, RoutedEventArgs e)
         {
-            string login = TBLogin.Text;
-            string password = TBPassword.Text;
-            if(DataAccess.IsCorrectUser(login, password) &&  RememberUser.IsChecked.GetValueOrDefault())
+            if(DataAccess.IsCorrectUser(TBLogin.Text, TBPassword.Password))
             {
-                MessageBox.Show("Добро пожаловать");
-                Properties.Settings.Default.Login = TBLogin.Text;
+                if (RememberUser.IsChecked.GetValueOrDefault())
+                    Properties.Settings.Default.Login = TBLogin.Text;
+                else
+                    Properties.Settings.Default.Login = null;
                 Properties.Settings.Default.Save();
+                MessageBox.Show("WELCUM");
             }
             else
             {
-                MessageBox.Show("Нет такого пользователя");
+                MessageBox.Show("who da fuck r' u? identify yo'self, nigga");
                 IncorrectTry++;
                 if(IncorrectTry == 3)
                 {
@@ -67,7 +67,7 @@ namespace Shop.Pages
                     session.DateStart = DateTime.Now;
                     session.DateEnd = DateTime.Now.AddMinutes(1);
                     DataAccess.StartBan(session);
-                    MessageBox.Show("Блокировка на 1 минуту");
+                    MessageBox.Show("Бан на 1 минуту");
                 }
             }
         }

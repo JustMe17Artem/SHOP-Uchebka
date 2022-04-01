@@ -44,7 +44,7 @@
                  Grid.Row="1"
                  FontSize="20"/>
         
-        <TextBox x:Name="TBPassword" 
+        <PasswordBox x:Name="TBPassword" 
                  Width="300"
                  Grid.ColumnSpan="5"
                  Height="40"
