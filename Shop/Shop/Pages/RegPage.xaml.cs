@@ -1,12 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Collections.ObjectModel;
 using Shop.my_ado;
-using System.Globalization;
 using System.Windows;
-using System.Text;
 using Shop.DataBase;
 using System;
 
@@ -115,6 +112,7 @@ namespace Shop.Pages
                 clientToAdd.AddDate = DateTime.Now.Date;
                 clientToAdd.NumberPhone = TBPhone.Text;
                 DataAccess.AddClient(clientToAdd);
+                NavigationService.GoBack();
             }
             else
             {
