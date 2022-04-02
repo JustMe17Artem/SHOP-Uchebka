@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using Shop.my_ado;
+using System.Globalization;
+using System.Windows;
+using System.Text;
+using Shop.DataBase;
+using System;
 
 namespace Shop.Pages
 {
@@ -21,32 +17,128 @@ namespace Shop.Pages
     /// </summary>
     public partial class RegPage : Page
     {
+        private ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
         public string neededSymbols = "!@#$%^";
         public RegPage()
         {
             InitializeComponent();
+            if (!RBtnFemale.IsPressed || !RBtnMale.IsPressed)
+                SexError.Text = "Пол не выбран";
+            PhoneError.Text = "Введите телефон";
+            LoginError.Text = "Введите логин";
+            PasswordError.Text = "Придумайте пароль";
+            FIOError.Text = "Введите ФИО";
+            EmailError.Text = "Введите адрес эл. почты";
         }
 
-        public void SetPassword()
-        {
-            
-        }
 
         private void TBLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
+            var sameUser = users.Where(u => u.Login == TBLogin.Text).ToList();
+            if (sameUser.Count == 1)
+                LoginError.Text = "Пользователь с таким именем сущесвует";
+            else
+                LoginError.Text = "";
+        }
+
+        private void TBPassword_TextChanged(object sender, TextChangedEventArgs e)
+        {
             var nyms = new Regex(@"[0-9]");
             var symbols = new Regex(@"[!@#$%^]");
-            var letters = new Regex(@"[A-Я]");
-            if ( TBLogin.Text == "")
-                PasswordError.Text = "Придумайте пароль";
-            else if (nyms.IsMatch(TBLogin.Text) && symbols.IsMatch(TBLogin.Text) && letters.IsMatch(TBLogin.Text) && TBLogin.Text.Length >=6)
+            var latinLetters = new Regex(@"[A-Z]");
+            var cyrillicLetters = new Regex(@"[А-Я]");
+            if (TBPassword.Text == "")
             {
-                PasswordError.Text = "Пароль соответствует требованиям";
+                PasswordError.Text = "Придумайте пароль";
+                 
+            }
+            else if (nyms.IsMatch(TBPassword.Text) && symbols.IsMatch(TBPassword.Text) && (cyrillicLetters.IsMatch(TBPassword.Text) || latinLetters.IsMatch(TBPassword.Text)) && TBPassword.Text.Length >= 6)
+            {
+                PasswordError.Text = "";
+                Password.Text = "";
             }
             else
             {
+                Password.Text = $"Пароль должен содержать: \nХотя бы одну цифру,\nХотя бы одну букву верхнего регистра,\nХотя бы один символ из !@#$%^";
                 PasswordError.Text = "Пароль не соответствует требованиям";
             }
+        }
+
+        private void TBFIO_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (TBFIO.Text.Length == 0)
+                FIOError.Text = "Введите ФИО";
+            else
+                FIOError.Text = "";
+
+        }
+
+        private bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        private void TBEmail_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (IsValidEmail(TBEmail.Text))
+                EmailError.Text = "";
+            else
+                EmailError.Text = "Некорректный адрес эл. почты";
+        }
+
+        private void BtnRegistrate_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            if (LoginError.Text.Length == 0 && PasswordError.Text.Length == 0
+               && FIOError.Text.Length == 0 && EmailError.Text.Length == 0 
+               && SexError.Text.Length == 0 && PhoneError.Text.Length == 0)
+            {
+                User userToAdd = new User();
+                userToAdd.Password = TBPassword.Text;
+                userToAdd.Login = TBLogin.Text;
+                DataAccess.AddUser(userToAdd);
+                var lastUser = users.Last();
+                Client clientToAdd = new Client();
+                clientToAdd.FIO = TBFIO.Text;
+                clientToAdd.UserId = lastUser.Id;
+                if (RBtnMale.IsPressed)
+                    clientToAdd.GenderId = 1;
+                else
+                    clientToAdd.GenderId = 2;
+                clientToAdd.Email = TBEmail.Text;
+                clientToAdd.AddDate = DateTime.Now.Date;
+                clientToAdd.NumberPhone = TBPhone.Text;
+                DataAccess.AddClient(clientToAdd);
+            }
+            else
+            {
+                MessageBox.Show("Введённые данные некорректны");
+            }
+        }
+
+        private void RBtnMale_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SexError.Text = "";
+        }
+
+        private void RBtnFemale_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            SexError.Text = "";
+        }
+
+        private void TBPhone_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            var nums = new Regex(@"[00000000000-99999999999]");
+            if (TBPhone.Text.Length != 11 )
+                PhoneError.Text = "Номер телефона болжен содержать 11 символов";
+            else if(nums.IsMatch(TBPhone.Text) && TBPhone.Text.Length == 11 )
+                PhoneError.Text = "";
         }
     }
 }

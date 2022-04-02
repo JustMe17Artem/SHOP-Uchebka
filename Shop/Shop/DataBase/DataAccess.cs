@@ -40,6 +40,33 @@ namespace Shop.DataBase
                 return false;
             }
         }
+        public static bool AddUser(User user)
+        {
+            try
+            {
+                user.RoleId = 3;
+                DB_Connection.connection.User.Add(user);
+                DB_Connection.connection.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool AddClient(Client client)
+        {
+            try
+            {
+                DB_Connection.connection.Client.Add(client);
+                DB_Connection.connection.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public static User GetUser(string login, string password)
         {
             ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
