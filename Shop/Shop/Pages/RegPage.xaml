@@ -34,6 +34,22 @@
                    HorizontalAlignment="Left"
                    Margin="0,-25,0,0"
                    VerticalAlignment="Center"/>
+        
+        <TextBlock Text="Пароль" 
+                   TextAlignment="Left"
+                   Grid.Row="2" 
+                   HorizontalAlignment="Left" 
+                   FontSize="20" 
+                   VerticalAlignment="Center"
+                   Margin="0,-30,0,0"/>
+
+        <TextBlock Text="ФИО" 
+                   Grid.Row="3" 
+                   FontSize="20" 
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Center"
+                   Margin="0,-30,0,0"
+                   HorizontalAlignment="Left"/>
 
         <TextBlock Text="Телефон" 
                    FontSize="20" 
@@ -44,15 +60,26 @@
                    HorizontalAlignment="Left"
                    Margin="-50,-30,0,0"
                    VerticalAlignment="Center"/>
-
-
-        <TextBlock Text="Пароль" 
-                   TextAlignment="Left"
-                   Grid.Row="2" 
-                   HorizontalAlignment="Left" 
+        
+        <TextBlock Text="Электронная почта" 
+                   Grid.Row="4" 
                    FontSize="20" 
+                   Grid.ColumnSpan="2"
                    VerticalAlignment="Center"
-                   Margin="0,-30,0,0"/>
+                   Margin="0,-30,0,0"
+                   TextAlignment="Left"
+                   HorizontalAlignment="Left"/>
+        
+        <TextBlock Text="Выберите пол" 
+                   HorizontalAlignment="Center"
+                   TextAlignment="Left"
+                   Width="320" 
+                   Height="30"
+                   FontSize="20"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="6"
+                   Margin="0,-170,0,0"/>
 
         <TextBlock Text="" 
                    TextAlignment="Left"
@@ -66,22 +93,8 @@
                    Margin="-70,-40,0,0"
                     Foreground="Red"/>
 
-        <TextBlock Text="ФИО" 
-                   Grid.Row="3" 
-                   FontSize="20" 
-                   Grid.ColumnSpan="2"
-                   VerticalAlignment="Center"
-                   Margin="0,-30,0,0"
-                   HorizontalAlignment="Left"/>
 
-        <TextBlock Text="Электронная почта" 
-                   Grid.Row="4" 
-                   FontSize="20" 
-                   Grid.ColumnSpan="2"
-                   VerticalAlignment="Center"
-                   Margin="0,-30,0,0"
-                   TextAlignment="Left"
-                   HorizontalAlignment="Left"/>
+        
 
         <TextBox x:Name="TBLogin" 
                  Width="300"
@@ -132,42 +145,6 @@
                  Margin="10,5,10,10"
                  TextChanged="TBPhone_TextChanged"/>
 
-        <TextBlock Text=""
-                   x:Name="EmailError" 
-                   HorizontalAlignment="Center"
-                   TextAlignment="Center"
-                   Width="320" 
-                   Height="15"
-                   Grid.Column="1"
-                   Grid.ColumnSpan="3"
-                   Grid.Row="5"
-                   Margin="-100,-105,0,0"
-                    Foreground="Red"/>
-
-        <TextBlock Text=""
-                   x:Name="FIOError" 
-                   HorizontalAlignment="Center"
-                   TextAlignment="Center"
-                   Width="320" 
-                   Height="15"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="3"
-                   Grid.Row="4"
-                   Margin="0,-105,0,0"
-                    Foreground="Red"/>
-        
-        <TextBlock Text=""
-                   x:Name="SexError" 
-                   HorizontalAlignment="Center"
-                   TextAlignment="Center"
-                   Width="200" 
-                   Height="15"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Grid.Row="6"
-                   Margin="0,-40,0,0"
-                    Foreground="Red"/>
-
         <RadioButton x:Name="RBtnMale" 
                      Grid.Row="5" 
                      Content="Мужской"
@@ -183,18 +160,10 @@
                      Width="75"
                      Grid.Column="1"
                      HorizontalAlignment="Left"
-                     VerticalAlignment="Bottom" Checked="RBtnFemale_Checked"/>
-
-        <TextBlock Text="Выберите пол" 
-                   HorizontalAlignment="Center"
-                   TextAlignment="Left"
-                   Width="320" 
-                   Height="30"
-                   FontSize="20"
-                   Grid.Column="0"
-                   Grid.ColumnSpan="2"
-                   Grid.Row="6"
-                   Margin="0,-170,0,0"/>
+                     VerticalAlignment="Bottom" 
+                     Checked="RBtnFemale_Checked"/>
+        
+        
 
         <TextBlock Text=""
                    x:Name="LoginError" 
@@ -207,19 +176,7 @@
                    Grid.Row="2"
                    Margin="0,-100,0,0"
                    Foreground="Red"/>
-
-        <TextBlock Text=""
-                   x:Name="PhoneError" 
-                   HorizontalAlignment="Center"
-                   TextAlignment="Center"
-                   Width="320" 
-                   Height="15"
-                   Grid.Column="3"
-                   Grid.ColumnSpan="3"
-                   Grid.Row="1"
-                   Margin="0,30,0,0"
-                    Foreground="Red"/>
-
+        
         <TextBlock Text=""
                    x:Name="PasswordError" 
                    HorizontalAlignment="Center"
@@ -232,6 +189,54 @@
                    Margin="0,-105,0,0"
                     Foreground="Red"/>
 
+        <TextBlock Text=""
+                   x:Name="PhoneError" 
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   Width="320" 
+                   Height="15"
+                   Grid.Column="3"
+                   Grid.ColumnSpan="3"
+                   Grid.Row="1"
+                   Margin="0,30,0,0"
+                    Foreground="Red"/>
+        
+        <TextBlock Text=""
+                   x:Name="FIOError" 
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   Width="320" 
+                   Height="15"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   Grid.Row="4"
+                   Margin="0,-105,0,0"
+                    Foreground="Red"/>
+        
+        <TextBlock Text=""
+                   x:Name="EmailError" 
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   Width="320" 
+                   Height="15"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="3"
+                   Grid.Row="5"
+                   Margin="-100,-105,0,0"
+                    Foreground="Red"/>
+
+        <TextBlock Text=""
+                   x:Name="SexError" 
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   Width="200" 
+                   Height="15"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="6"
+                   Margin="0,-40,0,0"
+                    Foreground="Red"/>
+        
         <Button x:Name="BtnRegistrate"
                 Grid.Column="2"
                 Grid.Row="6" 

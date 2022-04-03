@@ -15,7 +15,6 @@ namespace Shop.Pages
     public partial class RegPage : Page
     {
         private ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
-        public string neededSymbols = "!@#$%^";
         public RegPage()
         {
             InitializeComponent();
