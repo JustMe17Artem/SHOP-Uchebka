@@ -22,7 +22,7 @@ namespace Shop.Pages
             if (!RBtnFemale.IsPressed || !RBtnMale.IsPressed)
                 SexError.Text = "Пол не выбран";
             PhoneError.Text = "Введите телефон";
-            LoginError.Text = "Введите логин";
+            LoginError.Text = "Придумайте логин";
             PasswordError.Text = "Придумайте пароль";
             FIOError.Text = "Введите ФИО";
             EmailError.Text = "Введите адрес эл. почты";
@@ -34,6 +34,8 @@ namespace Shop.Pages
             var sameUser = users.Where(u => u.Login == TBLogin.Text).ToList();
             if (sameUser.Count == 1)
                 LoginError.Text = "Пользователь с таким именем сущесвует";
+            else if (TBLogin.Text.Length == 0)
+                LoginError.Text = "Придумайте логин";
             else
                 LoginError.Text = "";
         }
@@ -132,7 +134,7 @@ namespace Shop.Pages
 
         private void TBPhone_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var nums = new Regex(@"[00000000000-99999999999]");
+            var nums = new Regex(@"[1{10} - 9{10}]");
             if (TBPhone.Text.Length != 11 )
                 PhoneError.Text = "Номер телефона болжен содержать 11 символов";
             else if(nums.IsMatch(TBPhone.Text) && TBPhone.Text.Length == 11 )

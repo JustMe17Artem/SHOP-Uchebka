@@ -68,6 +68,8 @@
         <Button x:Name="BtnRegistrate"
                 Grid.Column="5"
                 Grid.Row="4" 
+                Height="40"
+                Width="120"
                 Content="Зарегестрироваться"
                 Click="BtnRegistrate_Click"/>
     </Grid>
