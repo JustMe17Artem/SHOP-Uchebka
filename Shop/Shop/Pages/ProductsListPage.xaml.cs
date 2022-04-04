@@ -35,9 +35,9 @@ namespace Shop.Pages
 
         private void TBSearch_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            if(TBSearch.Text != "")
+            
+            if (TBSearch.Text != "")
             {
-                LVProducts.SelectedItem = null;
                 LVProducts.ItemsSource = DataAccess.GetProductsByNameOrDescription(TBSearch.Text);
             }
             else

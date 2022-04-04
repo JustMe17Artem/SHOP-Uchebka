@@ -44,7 +44,7 @@ namespace Shop.Pages
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new ProductsListPage());
         }
 
         private void BtnDeleteProduct_Click(object sender, RoutedEventArgs e)
