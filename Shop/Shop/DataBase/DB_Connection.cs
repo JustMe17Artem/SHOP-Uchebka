@@ -9,6 +9,6 @@ namespace Shop.DataBase
 {
     public class DB_Connection
     {
-        public static SHOPEntities connection = new SHOPEntities();
+        public static SHOPEntities2 connection = new SHOPEntities2();
     }
 }

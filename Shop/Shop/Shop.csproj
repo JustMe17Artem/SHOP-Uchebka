@@ -96,73 +96,73 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="my_ado\BanSession.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Client.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Country.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Gender.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="my_ado\my_model.Context.cs">
+    <Compile Include="my_ado\Model1.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>my_model.Context.tt</DependentUpon>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="my_ado\my_model.cs">
+    <Compile Include="my_ado\Model1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
-    <Compile Include="my_ado\my_model.Designer.cs">
+    <Compile Include="my_ado\Model1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>my_model.edmx</DependentUpon>
+      <DependentUpon>Model1.edmx</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Order.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Product.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\ProductCountry.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\ProductIntake.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\ProductIntakeProduct.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\ProductOrder.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Role.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\StatusIntake.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\StatusOrder.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Supplier.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\sysdiagrams.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Unit.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\User.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="my_ado\Worker.cs">
-      <DependentUpon>my_model.tt</DependentUpon>
+      <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Pages\AuthoPage.xaml.cs">
       <DependentUpon>AuthoPage.xaml</DependentUpon>
@@ -190,12 +190,12 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EntityDeploy Include="my_ado\my_model.edmx">
+    <EntityDeploy Include="my_ado\Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>my_model.Designer.cs</LastGenOutput>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="my_ado\my_model.edmx.diagram">
-      <DependentUpon>my_model.edmx</DependentUpon>
+    <None Include="my_ado\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -206,7 +206,18 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="my_ado\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="my_ado\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="img\logo.jpg" />
     <Resource Include="img\апельсин.jpg" />
@@ -224,16 +235,6 @@
     <Resource Include="img\соль.jpg" />
     <Resource Include="img\фасоль стручковая.jpg" />
     <Resource Include="img\яйцо.jpg" />
-    <Content Include="my_ado\my_model.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>my_model.edmx</DependentUpon>
-      <LastGenOutput>my_model.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="my_ado\my_model.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>my_model.edmx</DependentUpon>
-      <LastGenOutput>my_model.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

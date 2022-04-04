@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities1">
+    <EntitySetMapping Name="BanSession">
+      <EntityTypeMapping TypeName="SHOPModel.BanSession">
+        <MappingFragment StoreEntitySet="BanSession">
+          <ScalarProperty Name="IdSession" ColumnName="IdSession" />
+          <ScalarProperty Name="DateStart" ColumnName="DateStart" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Client">
+      <EntityTypeMapping TypeName="SHOPModel.Client">
+        <MappingFragment StoreEntitySet="Client">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="GenderId" ColumnName="GenderId" />
+          <ScalarProperty Name="NumberPhone" ColumnName="NumberPhone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Country">
+      <EntityTypeMapping TypeName="SHOPModel.Country">
+        <MappingFragment StoreEntitySet="Country">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Color" ColumnName="Color" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gender">
+      <EntityTypeMapping TypeName="SHOPModel.Gender">
+        <MappingFragment StoreEntitySet="Gender">
+          <ScalarProperty Name="IdGender" ColumnName="IdGender" />
+          <ScalarProperty Name="NameGender" ColumnName="NameGender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order">
+      <EntityTypeMapping TypeName="SHOPModel.Order">
+        <MappingFragment StoreEntitySet="Order">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="WorkerId" ColumnName="WorkerId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+          <ScalarProperty Name="StatusOrderId" ColumnName="StatusOrderId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product">
+      <EntityTypeMapping TypeName="SHOPModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Photo" ColumnName="Photo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+          <ScalarProperty Name="AddDate" ColumnName="AddDate" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductCountry">
+      <EntityTypeMapping TypeName="SHOPModel.ProductCountry">
+        <MappingFragment StoreEntitySet="ProductCountry">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductIntake">
+      <EntityTypeMapping TypeName="SHOPModel.ProductIntake">
+        <MappingFragment StoreEntitySet="ProductIntake">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
+          <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+          <ScalarProperty Name="Data" ColumnName="Data" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductIntakeProduct">
+      <EntityTypeMapping TypeName="SHOPModel.ProductIntakeProduct">
+        <MappingFragment StoreEntitySet="ProductIntakeProduct">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="ProductIntakeId" ColumnName="ProductIntakeId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="PriceUnit" ColumnName="PriceUnit" />
+          <ScalarProperty Name="StatusIntakeId" ColumnName="StatusIntakeId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductOrder">
+      <EntityTypeMapping TypeName="SHOPModel.ProductOrder">
+        <MappingFragment StoreEntitySet="ProductOrder">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="OrderId" ColumnName="OrderId" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Role">
+      <EntityTypeMapping TypeName="SHOPModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusIntake">
+      <EntityTypeMapping TypeName="SHOPModel.StatusIntake">
+        <MappingFragment StoreEntitySet="StatusIntake">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StatusOrder">
+      <EntityTypeMapping TypeName="SHOPModel.StatusOrder">
+        <MappingFragment StoreEntitySet="StatusOrder">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier">
+      <EntityTypeMapping TypeName="SHOPModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="SHOPModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Unit">
+      <EntityTypeMapping TypeName="SHOPModel.Unit">
+        <MappingFragment StoreEntitySet="Unit">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="User">
+      <EntityTypeMapping TypeName="SHOPModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Worker">
+      <EntityTypeMapping TypeName="SHOPModel.Worker">
+        <MappingFragment StoreEntitySet="Worker">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -31,12 +31,12 @@
             <ListView x:Name="LVProducts" ItemsSource="{Binding products}" Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="1" Grid.RowSpan="7" SelectionChanged="LVProducts_SelectionChanged">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}"/>
+                        <GridViewColumn Header="№" DisplayMemberBinding="{Binding Id}" Width="40"/>
                         <GridViewColumn Header="Наименование"  DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Описание"  DisplayMemberBinding="{Binding Description}"/>
                         <GridViewColumn Header="Дата добавления" DisplayMemberBinding="{Binding AddDate}"/>
-                    <GridViewColumn Header="Ед.измерения" DisplayMemberBinding="{Binding Unit.Name}"/>
-                    <GridViewColumn Header="Страна">
+                        <GridViewColumn Header="Ед.измерения" DisplayMemberBinding="{Binding Unit.Name}"/>
+                        <GridViewColumn Header="Страна">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ListView ItemsSource="{Binding ProductCountry}">

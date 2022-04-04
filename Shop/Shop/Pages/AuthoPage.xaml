@@ -54,7 +54,9 @@
                   IsChecked="True"
                   Grid.Row="3"
                   Content="Запомнить меня"
-                  Grid.Column ="2"/>
+                  Grid.Column ="2"
+                  Height="20"
+                  VerticalAlignment="Top"/>
 
         <Button x:Name="BtnAuthorize"
                 Grid.Column="1"

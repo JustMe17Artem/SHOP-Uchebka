@@ -29,6 +29,7 @@ namespace Shop.Pages
             InitializeComponent();
             products = DataAccess.GetProducts();
             LVProducts.ItemsSource = products;
+            DataContext = this;
 
         }
 
