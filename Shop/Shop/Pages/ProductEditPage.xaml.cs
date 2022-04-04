@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Shop.my_ado;
+using System.Collections.ObjectModel;
 using Shop.DataBase;
 
 namespace Shop.Pages
@@ -39,6 +40,7 @@ namespace Shop.Pages
             {
                 RBLit.IsChecked = true;
             }
+            DataContext = this;
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)

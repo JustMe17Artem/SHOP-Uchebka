@@ -53,6 +53,7 @@
         <TextBlock Text="ID"
                    Grid.Column="0"
                    Grid.Row="1"
+                   FontSize="15"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
         
@@ -148,6 +149,7 @@
                Grid.Row="1"
                Grid.RowSpan="5"
                Margin="15"/>
+
         <Button x:Name="BtnEditPhoto"
                 Content="Изменить фото" 
                 Grid.Column="2" 

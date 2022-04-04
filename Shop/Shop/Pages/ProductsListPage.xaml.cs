@@ -53,5 +53,10 @@ namespace Shop.Pages
             var selectedProduct = (sender as ListView).SelectedItem as Product;
             NavigationService.Navigate(new ProductEditPage(selectedProduct));
         }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
