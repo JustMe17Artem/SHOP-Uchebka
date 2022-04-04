@@ -34,7 +34,7 @@ namespace Shop.Pages
             }
             else if (product.UnitId == 2)
             {
-                RBSt.IsChecked = true;
+                RBSt.IsChecked = true;  
             }
             else if (product.UnitId == 3)
             {

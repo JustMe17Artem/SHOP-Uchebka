@@ -27,3 +27,5 @@ C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\ProductsLis
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\ProductsListPage.baml
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\ProductEditPage.g.cs
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\ProductEditPage.baml
+C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\AddProductPage.g.cs
+C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\AddProductPage.baml

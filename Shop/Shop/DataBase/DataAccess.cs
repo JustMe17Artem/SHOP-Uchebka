@@ -15,6 +15,12 @@ namespace Shop.DataBase
             ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product);
             return products;
         }
+
+        public  static  ObservableCollection<Product> GetProductsByNameOrDescription(string name_or_description)
+        {
+            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(n => n.Name.Contains(name_or_description) || n.Description.Contains(name_or_description)));
+            return products;
+        }
         public static bool IsCorrectUser(string login, string password)
         {
             ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
