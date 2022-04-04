@@ -8,6 +8,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ProductsListPage">
 
+    <Border CornerRadius="100">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -26,7 +27,11 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Image Source= "/img/logo.jpg" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Left"/>
+            <Image Source= "/img/logo.jpg"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   Grid.Row="0"
+                   HorizontalAlignment="Center"/>
 
             <ListView x:Name="LVProducts" ItemsSource="{Binding products}" 
                       Grid.Column="0"
@@ -42,7 +47,8 @@
                         <GridViewColumn Header="Наименование" 
                                         DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Описание" 
-                                        DisplayMemberBinding="{Binding Description}"/>
+                                        DisplayMemberBinding="{Binding Description}"
+                                        Width="200"/>
                         <GridViewColumn Header="Дата добавления" 
                                         DisplayMemberBinding="{Binding AddDate}"/>
                         <GridViewColumn Header="Ед.измерения"
@@ -74,4 +80,5 @@
                      VerticalAlignment="Top" 
                      SelectionChanged="TBSearch_SelectionChanged"/>
         </Grid>
+    </Border>
 </Page>
