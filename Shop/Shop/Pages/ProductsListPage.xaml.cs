@@ -24,12 +24,14 @@ namespace Shop.Pages
     public partial class ProductsListPage : Page
     {
         private static ObservableCollection<Product> products { get; set; }
-        public ProductsListPage()
+        public static User currentUser;
+        public ProductsListPage(User user)
         {
             InitializeComponent();
             products = DataAccess.GetProducts();
             LVProducts.ItemsSource = products;
             DataContext = this;
+            currentUser = user;
 
         }
 

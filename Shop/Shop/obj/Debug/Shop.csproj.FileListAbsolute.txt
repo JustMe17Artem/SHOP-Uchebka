@@ -22,7 +22,6 @@ C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\AuthoPage.g
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\AuthoPage.baml
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\RegPage.g.cs
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\RegPage.baml
-C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Shop.csproj.AssemblyReference.cache
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\ProductsListPage.g.cs
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\ProductsListPage.baml
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\ProductEditPage.g.cs

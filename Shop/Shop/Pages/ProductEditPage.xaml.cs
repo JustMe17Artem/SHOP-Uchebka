@@ -26,7 +26,6 @@ namespace Shop.Pages
         {
             InitializeComponent();
             TBId.Text = product.Id.ToString();
-            TBName.Text = product.Name;
             TBDescription.Text = product.Description;
             if (product.UnitId == 1)
             {
@@ -44,7 +43,7 @@ namespace Shop.Pages
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new ProductsListPage());
+            NavigationService.Navigate(new ProductsListPage(ProductsListPage.currentUser));
         }
 
         private void BtnDeleteProduct_Click(object sender, RoutedEventArgs e)
