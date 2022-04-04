@@ -1,0 +1,160 @@
+﻿<Page x:Class="Shop.Pages.ProductEditPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Shop.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductEditPage">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Button x:Name="BtnBack"
+                Content="Назад"
+                Grid.Row="7"
+                Height="30"
+                Width="100" VerticalAlignment="Bottom" 
+                HorizontalAlignment="Left"
+                Click="BtnBack_Click" />
+
+        <Button x:Name="BtnSaveProduct" 
+                Content="Сохранить"
+                Grid.Column="1" 
+                Grid.Row="7"
+                Height="40"
+                Width="140"
+                Click="BtnSaveProduct_Click"/>
+
+        <Button x:Name="BtnDeleteProduct"
+                Content="Удалить"
+                Grid.Column="3"
+                Grid.Row="7" 
+                Height="40" 
+                Width="140" 
+                Click="BtnDeleteProduct_Click"/>
+
+        <TextBlock Text="ID"
+                   Grid.Column="0"
+                   Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="Название"
+                   Grid.Column="0" 
+                   Grid.Row="2"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="Описание"
+                   Grid.Column="0"
+                   Grid.Row="3"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="Ед.измерения"
+                   Grid.Column="0" 
+                   Grid.Row="4"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="Страна"
+                   Grid.Column="0"
+                   Grid.Row="5"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <TextBox Grid.Column="1"
+                 x:Name="TBId"
+                 Grid.Row="1"
+                 Height="30"
+                 IsReadOnly="True"
+                 Width="60"/>
+
+        <TextBox x:Name="TBName" 
+                 Grid.Column="1" 
+                 Height="30"
+                 FontSize="15"
+                 Grid.Row="2"/>
+
+        <TextBox x:Name="TBDescription"
+                 Grid.Column="1"
+                 Height="50"
+                 FontSize="15"
+                 Grid.Row="3"
+                 TextWrapping="Wrap"/>
+
+        <StackPanel x:Name="SPUnit"
+                    Grid.Column="1" 
+                    Grid.Row="4" 
+                    Margin="10,0,10,10"
+                    Height="50">
+            <RadioButton x:Name="RBKg"
+                         GroupName="unit"
+                         Content="кг"/>
+            <RadioButton x:Name="RBSt" 
+                         GroupName="unit"
+                         Content="шт"/>
+            <RadioButton x:Name="RBLit"
+                         GroupName="unit"
+                         Content="л"/>
+        </StackPanel>
+
+        <StackPanel x:Name="SPCountry" 
+                    Grid.Column="1"
+                    Grid.Row="5"
+                    Grid.RowSpan="2"
+                    Margin="10,0,10,0">
+
+            <CheckBox x:Name="CBRus"
+                      Content="Россия"/>
+            <CheckBox x:Name="CDChin"
+                      Content="Китай"/>
+            <CheckBox x:Name="CBAlg"
+                      Content="Алжир"/>
+            <CheckBox x:Name="CBInd"
+                      Content="Индия"/>
+            <CheckBox x:Name="CBNor"
+                      Content="Норвегия"/>
+            <CheckBox x:Name="CBMex"
+                      Content="Мексика"/>
+            <CheckBox x:Name="CBAus"
+                      Content="Австралия"/>
+        </StackPanel>
+
+        <Image Source="{Binding Product.Photo}"
+               Grid.Column="2" 
+               Grid.ColumnSpan="3" 
+               Grid.Row="1"
+               Grid.RowSpan="5"
+               Margin="15"/>
+        <Button x:Name="BtnEditPhoto"
+                Content="Изменить фото" 
+                Grid.Column="2" 
+                Grid.Row="7" 
+                Height="40"
+                Click="BtnEditPhoto_Click"
+                Width="140"/>
+    </Grid>
+
+</Page>

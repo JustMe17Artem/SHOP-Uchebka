@@ -40,7 +40,8 @@ namespace Shop.Pages
 
         private void LVProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            var selectedProduct = (sender as ListView).SelectedItem as Product;
+            NavigationService.Navigate(new ProductEditPage(selectedProduct));
         }
     }
 }
