@@ -85,6 +85,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\ProductsListPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\RegPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -163,6 +167,9 @@
     <Compile Include="Pages\AuthoPage.xaml.cs">
       <DependentUpon>AuthoPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ProductsListPage.xaml.cs">
+      <DependentUpon>ProductsListPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\RegPage.xaml.cs">
       <DependentUpon>RegPage.xaml</DependentUpon>
     </Compile>
@@ -201,6 +208,22 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="img\logo.jpg" />
+    <Resource Include="img\апельсин.jpg" />
+    <Resource Include="img\горчица.jpg" />
+    <Resource Include="img\красный перец.jpg" />
+    <Resource Include="img\лимон.jpg" />
+    <Resource Include="img\масло растительное.jpg" />
+    <Resource Include="img\масло сливочное.jpg" />
+    <Resource Include="img\овсяные хлопья.jpg" />
+    <Resource Include="img\петрушка.jpg" />
+    <Resource Include="img\помидор.jpg" />
+    <Resource Include="img\рис.jpg" />
+    <Resource Include="img\рыба.jpg" />
+    <Resource Include="img\сахар.jpg" />
+    <Resource Include="img\соль.jpg" />
+    <Resource Include="img\фасоль стручковая.jpg" />
+    <Resource Include="img\яйцо.jpg" />
     <Content Include="my_ado\my_model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>my_model.edmx</DependentUpon>

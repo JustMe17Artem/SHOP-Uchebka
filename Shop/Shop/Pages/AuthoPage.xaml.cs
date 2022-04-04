@@ -46,6 +46,7 @@ namespace Shop.Pages
                     Properties.Settings.Default.Login = null;
                 Properties.Settings.Default.Save();
                 MessageBox.Show("WELCUM");
+                NavigationService.Navigate(new ProductsListPage());
             }
             else
             {

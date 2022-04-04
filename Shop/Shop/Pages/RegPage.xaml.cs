@@ -31,9 +31,10 @@ namespace Shop.Pages
         private void TBLogin_TextChanged(object sender, TextChangedEventArgs e)
         {
             var sameUser = users.Where(u => u.Login == TBLogin.Text).ToList();
+            Regex syms = new Regex(@"\s");
             if (sameUser.Count == 1)
                 LoginError.Text = "Пользователь с таким именем сущесвует";
-            else if (TBLogin.Text.Length == 0)
+            else if (TBLogin.Text.Length == 0 || syms.IsMatch(TBLogin.Text))
                 LoginError.Text = "Придумайте логин";
             else
                 LoginError.Text = "";
@@ -46,10 +47,7 @@ namespace Shop.Pages
             var latinLetters = new Regex(@"[A-Z]");
             var cyrillicLetters = new Regex(@"[А-Я]");
             if (TBPassword.Text == "")
-            {
                 PasswordError.Text = "Придумайте пароль";
-                 
-            }
             else if (nyms.IsMatch(TBPassword.Text) && symbols.IsMatch(TBPassword.Text) && (cyrillicLetters.IsMatch(TBPassword.Text) || latinLetters.IsMatch(TBPassword.Text)) && TBPassword.Text.Length >= 6)
             {
                 PasswordError.Text = "";
@@ -63,11 +61,14 @@ namespace Shop.Pages
         }
 
         private void TBFIO_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (TBFIO.Text.Length == 0)
+        {   
+            Regex syms = new Regex(@"[А-Я][а-я]+\s[А-Я][а-я]+");
+            if (TBFIO.Text.Length == 0 )
                 FIOError.Text = "Введите ФИО";
-            else
+            else if(syms.IsMatch(TBFIO.Text))
                 FIOError.Text = "";
+            else
+                FIOError.Text = "Введите ФИО";
 
         }
 
@@ -93,9 +94,7 @@ namespace Shop.Pages
 
         private void BtnRegistrate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            if (LoginError.Text.Length == 0 && PasswordError.Text.Length == 0
-               && FIOError.Text.Length == 0 && EmailError.Text.Length == 0 
-               && SexError.Text.Length == 0 && PhoneError.Text.Length == 0)
+            if (LoginError.Text.Length == 0 && PasswordError.Text.Length == 0 && FIOError.Text.Length == 0 && EmailError.Text.Length == 0  && SexError.Text.Length == 0 && PhoneError.Text.Length == 0)
             {
                 User userToAdd = new User();
                 userToAdd.Password = TBPassword.Text;
@@ -116,9 +115,7 @@ namespace Shop.Pages
                 NavigationService.GoBack();
             }
             else
-            {
                 MessageBox.Show("Введённые данные некорректны");
-            }
         }
 
         private void RBtnMale_Checked(object sender, System.Windows.RoutedEventArgs e)
