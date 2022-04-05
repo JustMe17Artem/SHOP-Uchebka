@@ -24,5 +24,36 @@ namespace Shop.Pages
         {
             InitializeComponent();
         }
+
+        private void btn_newphoto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void TBName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void TBDescription_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+        }
+
+        private void BtnAddPhoto_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -9,6 +9,117 @@
       Title="AddProductPage">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Добавление товара"
+                   FontSize="25"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   TextAlignment="Center"/>
+
+        <Button x:Name="BtnBack"
+                Content="Назад" 
+                Grid.Column="0" 
+                Grid.Row="7"
+                Height="30" 
+                Width="100"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Click="BtnBack_Click"/>
         
+        <Button x:Name="BtnAdd"
+                Content="Создать товар"
+                Grid.Column="1" 
+                Grid.Row="7"
+                Height="40" 
+                Width="140" 
+                Click="BtnAdd_Click"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"/>
+
+        <TextBlock Text="Название" 
+                   Grid.Column="0"
+                   Grid.Row="2"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="Описание"
+                   Grid.Column="0" 
+                   Grid.Row="3"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="Ед.измерения" 
+                   Grid.Column="0" 
+                   Grid.Row="4"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+        
+        <TextBlock Text="Страна"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Grid.Column="0" Grid.Row="5"/>
+
+        <TextBox x:Name="TBName" 
+                 Grid.Column="1"
+                 Grid.Row="2" 
+                 PreviewTextInput="TBName_PreviewTextInput"
+                 Height="30"
+                 FontSize="15"/>
+        
+        <TextBox x:Name="TBDescription"
+                 Grid.Column="1"
+                 Grid.Row="3" 
+                 Height="50"
+                 TextWrapping="Wrap"
+                 FontSize="15"
+                 PreviewTextInput="TBDescription_PreviewTextInput"/>
+
+
+        <StackPanel x:Name="sp_country" Grid.Column="1" Grid.Row="5" Grid.RowSpan="2">
+            <CheckBox x:Name="cb_rus" Content="Россия"/>
+            <CheckBox x:Name="cb_chi" Content="Китай"/>
+            <CheckBox x:Name="cb_alz" Content="Алжир"/>
+            <CheckBox x:Name="cb_hin" Content="Индия"/>
+            <CheckBox x:Name="cb_nor" Content="Норвегия"/>
+            <CheckBox x:Name="cb_mex" Content="Мексика"/>
+            <CheckBox x:Name="cb_aus" Content="Австралия"/>
+        </StackPanel>
+
+        <Image Source="{Binding Product.Photo}" 
+               Grid.Column="2"
+               Grid.ColumnSpan="3"
+               Grid.Row="1" 
+               Grid.RowSpan="5" 
+               Margin="15"/>
+        
+        <Button x:Name="BtnAddPhoto"
+                Content="Добавить фото"
+                Grid.Column="2" 
+                Grid.ColumnSpan="3"
+                Grid.Row="6" 
+                HorizontalAlignment="Center"
+                Width="140" 
+                 Height="40"
+                Click="BtnAddPhoto_Click"/>
     </Grid>
 </Page>

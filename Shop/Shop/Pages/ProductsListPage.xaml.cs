@@ -56,7 +56,7 @@ namespace Shop.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.Navigate(new AddProductPage());
         }
     }
 }

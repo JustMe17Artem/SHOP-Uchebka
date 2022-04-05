@@ -25,6 +25,12 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
+        
+        <TextBlock Text="Редактирование товара"
+                   FontSize="25"
+                   Grid.Column="1"
+                   Grid.ColumnSpan="2"
+                   TextAlignment="Center"/>
 
         <Button x:Name="BtnBack"
                 Content="Назад"
@@ -44,7 +50,7 @@
 
         <Button x:Name="BtnDeleteProduct"
                 Content="Удалить"
-                Grid.Column="3"
+                Grid.Column="2"
                 Grid.Row="7" 
                 Height="40" 
                 Width="140" 
@@ -146,7 +152,8 @@
         <Button x:Name="BtnEditPhoto"
                 Content="Изменить фото" 
                 Grid.Column="2" 
-                Grid.Row="7" 
+                Grid.Row="6" 
+                Grid.ColumnSpan="2"
                 Height="40"
                 Click="BtnEditPhoto_Click"
                 Width="140"/>
