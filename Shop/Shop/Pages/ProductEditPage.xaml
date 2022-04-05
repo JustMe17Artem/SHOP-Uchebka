@@ -78,6 +78,13 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
         
+        <TextBlock Text="Цена"
+                   Grid.Column="0" 
+                   Grid.Row="6"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
         <TextBlock Text="Страна"
                    Grid.Column="0"
                    Grid.Row="5"
@@ -104,50 +111,36 @@
                  FontSize="15"
                  Grid.Row="3"
                  TextWrapping="Wrap"/>
+        
+        <ComboBox SelectedItem="{Binding Unit}" 
+                      DisplayMemberPath="Name" 
+                      x:Name="UnitCb"
+                      Height="30"
+                      Width="200"
+                      VerticalContentAlignment="Center"
+                      VerticalAlignment="Center"
+                  Grid.Column="1"
+                  Grid.Row="4"/>
 
-        <StackPanel x:Name="SPUnit"
-                    Grid.Column="1" 
-                    Grid.Row="4" 
-                    Margin="10,-1,10,10"
-                    Height="50">
-            <RadioButton x:Name="RBKg"
-                         GroupName="unit"
-                         Content="кг"/>
-            <RadioButton x:Name="RBSt" 
-                         GroupName="unit"
-                         Content="шт"/>
-            <RadioButton x:Name="RBLit"
-                         GroupName="unit"
-                         Content="л"/>
-        </StackPanel>
 
-        <StackPanel x:Name="SPCountry" 
-                    Grid.Column="1"
-                    Grid.Row="5"
-                    Grid.RowSpan="2"
-                    Margin="10,-5,10,0">
+        <ComboBox Margin="2"
+                  Name="CountryCb"
+                  Grid.Row="5"
+                  Grid.Column="1"
+                  Height="30"/>
+        
+        <TextBox x:Name="TBPrice" 
+                 Grid.Column="1" 
+                 Height="30"
+                 FontSize="15"
+                 Grid.Row="6"/>
 
-            <CheckBox x:Name="CBRus"
-                      Content="Россия"/>
-            <CheckBox x:Name="CDChin"
-                      Content="Китай"/>
-            <CheckBox x:Name="CBAlg"
-                      Content="Алжир"/>
-            <CheckBox x:Name="CBInd"
-                      Content="Индия"/>
-            <CheckBox x:Name="CBNor"
-                      Content="Норвегия"/>
-            <CheckBox x:Name="CBMex"
-                      Content="Мексика"/>
-            <CheckBox x:Name="CBAus"
-                      Content="Австралия"/>
-        </StackPanel>
-
-        <Image Source="{Binding Product.Photo}"
+        <Image x:Name="ProductImage"
+               Source="{Binding Photo}"
                Grid.Column="2" 
                Grid.ColumnSpan="3" 
-               Grid.Row="1"
-               Grid.RowSpan="5"
+               Grid.Row="1" 
+               Grid.RowSpan="5" 
                Margin="15"/>
 
         <Button x:Name="BtnEditPhoto"

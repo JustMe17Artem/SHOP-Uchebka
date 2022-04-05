@@ -53,6 +53,7 @@
         <CheckBox x:Name="RememberUser"
                   IsChecked="True"
                   Grid.Row="3"
+                  HorizontalAlignment="Center"
                   Content="Запомнить меня"
                   Grid.Column ="2"
                   Height="20"

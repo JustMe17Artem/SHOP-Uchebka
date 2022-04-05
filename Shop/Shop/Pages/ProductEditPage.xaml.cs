@@ -15,6 +15,8 @@ using System.Windows.Shapes;
 using Shop.my_ado;
 using System.Collections.ObjectModel;
 using Shop.DataBase;
+using System.IO;
+using Microsoft.Win32;
 
 namespace Shop.Pages
 {
@@ -23,24 +25,19 @@ namespace Shop.Pages
     /// </summary>
     public partial class ProductEditPage : Page
     {
+        Product changedProduct;
         public ProductEditPage(Product product)
         {
             InitializeComponent();
+            changedProduct = product;
             TBId.Text = product.Id.ToString();
+            TBName.Text = product.Name;
             TBDescription.Text = product.Description;
-            if (product.UnitId == 1)
-            {
-                RBKg.IsChecked = true;
-            }
-            else if (product.UnitId == 2)
-            {
-                RBSt.IsChecked = true;  
-            }
-            else if (product.UnitId == 3)
-            {
-                RBLit.IsChecked = true;
-            }
-            DataContext = this;
+            TBPrice.Text = product.Price.ToString();
+            UnitCb.ItemsSource = DataAccess.GetUnits();
+            CountryCb.ItemsSource = DataAccess.GetCountries();
+            CountryCb.DisplayMemberPath = "Name";
+            DataContext = changedProduct;
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -55,10 +52,43 @@ namespace Shop.Pages
 
         private void BtnSaveProduct_Click(object sender, RoutedEventArgs e)
         {
+            //changedProduct.UnitId= (UnitCb.SelectedItem as Unit).Id;
+            //changedProduct.AddDate = DateTime.Now;
+            //changedProduct.Name = TBName.Text;
+            //changedProduct.Description = TBDescription.Text;
+            //if (changedProduct.Id == 0)
+            //AddCountryBtn.Visibility = Visibility.Visible;
+            //DelCountryBtn.Visibility = Visibility.Visible;
 
+            changedProduct.AddDate = DateTime.Now;
+            changedProduct.Name = TBName.Text;
+            changedProduct.Description = TBDescription.Text;
+            var unit = UnitCb.SelectedItem as Unit;
+            changedProduct.UnitId = unit.Id;
+            changedProduct.Price = Int32.Parse(TBPrice.Text);
+            DataAccess.Changeroduct();
+            NavigationService.Navigate(new ProductsListPage(ProductsListPage.currentUser));
         }
 
         private void BtnEditPhoto_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFile = new OpenFileDialog()
+            {
+                Filter = "*.png|*.png|*.jpeg|*.jpeg|*.jpg|*.jpg"
+            };
+            if (openFile.ShowDialog().GetValueOrDefault())
+            {
+                changedProduct.Photo = File.ReadAllBytes(openFile.FileName);
+                ProductImage.Source = new BitmapImage(new Uri(openFile.FileName));
+            }
+        }
+
+        private void DelCountryBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddCountryBtn_Click(object sender, RoutedEventArgs e)
         {
 
         }

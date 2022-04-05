@@ -63,6 +63,13 @@
                         <GridViewColumn Header="№" 
                                         DisplayMemberBinding="{Binding Id}"
                                         Width="40"/>
+                        <GridViewColumn Header="Фото">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="{Binding Photo}" Height="70"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="Наименование" 
                                         DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Описание" 

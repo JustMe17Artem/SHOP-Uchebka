@@ -60,6 +60,20 @@ namespace Shop.DataBase
                 return false;
             }
         }
+
+        public static bool Changeroduct()
+        {
+            try
+            {
+                DB_Connection.connection.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    
         public static bool AddClient(Client client)
         {
             try
@@ -78,6 +92,16 @@ namespace Shop.DataBase
             ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
             var currentUser = users.Where(u => u.Login == login && u.Password == password).FirstOrDefault();
             return currentUser;
+        }
+        public static ObservableCollection<Unit> GetUnits()
+        {
+            ObservableCollection<Unit> units = new ObservableCollection<Unit>(DB_Connection.connection.Unit);
+            return units;
+        }
+        public static ObservableCollection<Country> GetCountries()
+        {
+            ObservableCollection<Country> countries = new ObservableCollection<Country>(DB_Connection.connection.Country);
+            return countries;
         }
         public static User GetUser(int idUser)
         {
