@@ -12,7 +12,7 @@ namespace Shop.DataBase
     {
         public static ObservableCollection<Product> GetProducts()
         {
-            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product);
+            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(p => p.IsDeleted == false || p.IsDeleted == null));
             return products;
         }
 
@@ -73,7 +73,20 @@ namespace Shop.DataBase
                 return false;
             }
         }
-    
+        public static bool DeleteProduct(Product product)
+        {
+            product.IsDeleted = true;
+            try
+            {
+                DB_Connection.connection.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static bool AddClient(Client client)
         {
             try

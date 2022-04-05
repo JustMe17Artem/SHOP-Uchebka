@@ -29,6 +29,7 @@ namespace Shop.my_ado
         public int UnitId { get; set; }
         public System.DateTime AddDate { get; set; }
         public Nullable<int> Price { get; set; }
+        public Nullable<bool> IsDeleted { get; set; }
     
         public virtual Unit Unit { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

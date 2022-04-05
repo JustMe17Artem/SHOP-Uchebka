@@ -46,28 +46,30 @@ namespace Shop.Pages
         }
 
         private void BtnDeleteProduct_Click(object sender, RoutedEventArgs e)
-        {
-
+        { 
+            DataAccess.DeleteProduct(changedProduct);
+            MessageBox.Show($"Продукт {changedProduct.Name} удалён");
+            NavigationService.Navigate(new ProductsListPage(ProductsListPage.currentUser));
         }
 
         private void BtnSaveProduct_Click(object sender, RoutedEventArgs e)
-        {
-            //changedProduct.UnitId= (UnitCb.SelectedItem as Unit).Id;
-            //changedProduct.AddDate = DateTime.Now;
-            //changedProduct.Name = TBName.Text;
-            //changedProduct.Description = TBDescription.Text;
-            //if (changedProduct.Id == 0)
-            //AddCountryBtn.Visibility = Visibility.Visible;
-            //DelCountryBtn.Visibility = Visibility.Visible;
-
-            changedProduct.AddDate = DateTime.Now;
-            changedProduct.Name = TBName.Text;
-            changedProduct.Description = TBDescription.Text;
-            var unit = UnitCb.SelectedItem as Unit;
-            changedProduct.UnitId = unit.Id;
-            changedProduct.Price = Int32.Parse(TBPrice.Text);
-            DataAccess.Changeroduct();
-            NavigationService.Navigate(new ProductsListPage(ProductsListPage.currentUser));
+        {            
+            try
+            {
+                changedProduct.AddDate = DateTime.Now;
+                changedProduct.Name = TBName.Text;
+                changedProduct.Description = TBDescription.Text;
+                var unit = UnitCb.SelectedItem as Unit;
+                changedProduct.UnitId = unit.Id;
+                changedProduct.Price = Int32.Parse(TBPrice.Text); 
+                DataAccess.Changeroduct();
+                NavigationService.Navigate(new ProductsListPage(ProductsListPage.currentUser));
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Цена в цифрах!");
+            }
+            
         }
 
         private void BtnEditPhoto_Click(object sender, RoutedEventArgs e)
@@ -83,14 +85,5 @@ namespace Shop.Pages
             }
         }
 
-        private void DelCountryBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddCountryBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
