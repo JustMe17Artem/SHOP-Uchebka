@@ -51,86 +51,135 @@
                 Click="BtnAdd_Click"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Center"/>
+        
 
         <TextBlock Text="Название" 
                    Grid.Column="0"
-                   Grid.Row="2"
+                   Grid.Row="1"
                    FontSize="15"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
         
         <TextBlock Text="Описание"
                    Grid.Column="0" 
+                   Grid.Row="2"
+                   FontSize="15"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"/>
+
+        <TextBlock Text="Ед.измерения" 
+                   Grid.Column="0" 
                    Grid.Row="3"
                    FontSize="15"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
-        
-        <TextBlock Text="Ед.измерения" 
-                   Grid.Column="0" 
-                   Grid.Row="4"
-                   FontSize="15"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
-        
-        <TextBlock Text="Страна"
+
+        <TextBlock Text="Цена"
                    FontSize="15"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
-                   Grid.Column="0" Grid.Row="5"/>
+                   Grid.Column="0" Grid.Row="4"/>
+
+
+        <TextBlock Text="Страна"
+                   Grid.Column="2"
+                   Grid.Row="5"
+                   FontSize="15"
+                   VerticalAlignment="Top"
+                   HorizontalAlignment="Center"/>
 
         <TextBox x:Name="TBName" 
                  Grid.Column="1"
-                 Grid.Row="2" 
-                 PreviewTextInput="TBName_PreviewTextInput"
+                 Grid.Row="1" 
                  Height="30"
                  FontSize="15"/>
         
         <TextBox x:Name="TBDescription"
                  Grid.Column="1"
-                 Grid.Row="3" 
+                 Grid.Row="2" 
                  Height="50"
                  TextWrapping="Wrap"
-                 FontSize="15"
-                 PreviewTextInput="TBDescription_PreviewTextInput"/>
+                 FontSize="15"/>
         
         <ComboBox SelectedItem="{Binding Unit}" 
                       DisplayMemberPath="Name" 
                       x:Name="UnitCb"
                       Height="30"
                       Width="200"
+                  HorizontalContentAlignment="Center"
                       VerticalContentAlignment="Center"
                       VerticalAlignment="Center"
                   Grid.Column="1"
-                  Grid.Row="4"/>
+                  Grid.Row="3"/>
 
+        <ComboBox Margin="2"
+                  Name="CountryCb"
+                  Grid.Row="5"
+                  ItemsSource="{Binding Country}"
+                  DisplayMemberPath="Name" 
+                  Grid.Column="2"
+                  HorizontalContentAlignment="Center"
+                  VerticalContentAlignment="Center"
+                  VerticalAlignment="Bottom"
+                  Height="30"
+                  Visibility="Hidden"/>
 
-        <StackPanel x:Name="sp_country" Grid.Column="1" Grid.Row="5" Grid.RowSpan="2">
-            <CheckBox x:Name="cb_rus" Content="Россия"/>
-            <CheckBox x:Name="cb_chi" Content="Китай"/>
-            <CheckBox x:Name="cb_alz" Content="Алжир"/>
-            <CheckBox x:Name="cb_hin" Content="Индия"/>
-            <CheckBox x:Name="cb_nor" Content="Норвегия"/>
-            <CheckBox x:Name="cb_mex" Content="Мексика"/>
-            <CheckBox x:Name="cb_aus" Content="Австралия"/>
-        </StackPanel>
+        <TextBox x:Name="TBPrice"
+                 Grid.Column="1"
+                 Grid.Row="4" 
+                 Height="30"
+                 TextWrapping="Wrap"
+                 FontSize="15"/>
+
 
         <Image Source="{Binding Product.Photo}" 
                Grid.Column="2"
-               Grid.ColumnSpan="3"
+               Grid.RowSpan="3"
                Grid.Row="1" 
-               Grid.RowSpan="5" 
+
                Margin="15"
                x:Name="ProductPhoto"/>
         
         <Button x:Name="BtnAddPhoto"
                 Content="Добавить фото"
                 Grid.Column="2" 
-                Grid.ColumnSpan="3"
-                Grid.Row="6" 
+                Grid.Row="4" 
                 HorizontalAlignment="Center"
                 Width="140" 
                  Height="40"
                 Click="BtnAddPhoto_Click"/>
+        
+        <Button x:Name="BtnAddCountry" 
+                Content="Добавить страну"
+                Grid.Column="2" 
+                Grid.Row="6"
+                Height="40"
+                Width="140"
+                Click="BtnAddCountry_Click"
+                Visibility="Hidden"/>
+
+        <Button x:Name="BtnRemoveCountry" 
+                Content="Убрать страну"
+                Grid.Column="2" 
+                Grid.Row="7"
+                Height="40"
+                Width="140"
+                Click="BtnRemoveCountry_Click"
+                Visibility="Hidden"/>
+
+        <ListView  x:Name="CountryLv"
+                   ItemsSource="{Binding ProductCountry}"
+                   Width="150"
+                   Height="150"
+                   Grid.Column="3"
+                   Grid.Row="5"
+                   Grid.RowSpan="3">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Label Height="30" FontSize="15" Content="{Binding Country.Name}" Background="{Binding Country.Color}"></Label>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
     </Grid>
 </Page>

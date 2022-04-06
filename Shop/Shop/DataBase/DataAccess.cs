@@ -15,10 +15,15 @@ namespace Shop.DataBase
             ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(p => p.IsDeleted == false || p.IsDeleted == null));
             return products;
         }
+        public static ObservableCollection<ProductCountry> GetProdCountries()
+        {
+            ObservableCollection<ProductCountry> prodCountries = new ObservableCollection<ProductCountry>(DB_Connection.connection.ProductCountry);
+            return prodCountries;
+        }
 
         public  static  ObservableCollection<Product> GetProductsByNameOrDescription(string name_or_description)
         {
-            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(n => n.Name.Contains(name_or_description) || n.Description.Contains(name_or_description)));
+            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(n => (n.Name.Contains(name_or_description) || n.Description.Contains(name_or_description)) && n.IsDeleted == false));
             return products;
         }
         public static bool IsCorrectUser(string login, string password)
@@ -38,6 +43,19 @@ namespace Shop.DataBase
             try
             {
                 DB_Connection.connection.BanSession.Add(session);
+                DB_Connection.connection.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool AddProdCountry(ProductCountry productCountry)
+        {
+            try
+            {
+                DB_Connection.connection.ProductCountry.Add(productCountry);
                 DB_Connection.connection.SaveChanges();
                 return true;
             }
@@ -78,6 +96,19 @@ namespace Shop.DataBase
             product.IsDeleted = true;
             try
             {
+                DB_Connection.connection.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static bool DeleteProdCountry(ProductCountry productCountry)
+        {
+            try
+            {
+                DB_Connection.connection.ProductCountry.Remove(productCountry);
                 DB_Connection.connection.SaveChanges();
                 return true;
             }

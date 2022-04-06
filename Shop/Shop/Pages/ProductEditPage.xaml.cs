@@ -46,14 +46,14 @@ namespace Shop.Pages
         }
 
         private void BtnDeleteProduct_Click(object sender, RoutedEventArgs e)
-        { 
+        {
             DataAccess.DeleteProduct(changedProduct);
             MessageBox.Show($"Продукт {changedProduct.Name} удалён");
             NavigationService.Navigate(new ProductsListPage(ProductsListPage.currentUser));
         }
 
         private void BtnSaveProduct_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             try
             {
                 changedProduct.AddDate = DateTime.Now;
@@ -61,7 +61,7 @@ namespace Shop.Pages
                 changedProduct.Description = TBDescription.Text;
                 var unit = UnitCb.SelectedItem as Unit;
                 changedProduct.UnitId = unit.Id;
-                changedProduct.Price = Int32.Parse(TBPrice.Text); 
+                changedProduct.Price = Int32.Parse(TBPrice.Text);
                 DataAccess.Changeroduct();
                 NavigationService.Navigate(new ProductsListPage(ProductsListPage.currentUser));
             }
@@ -69,7 +69,7 @@ namespace Shop.Pages
             {
                 MessageBox.Show("Цена в цифрах!");
             }
-            
+
         }
 
         private void BtnEditPhoto_Click(object sender, RoutedEventArgs e)
@@ -85,5 +85,35 @@ namespace Shop.Pages
             }
         }
 
+        private void BtnAddCountry_Click(object sender, RoutedEventArgs e)
+        {
+            if (CountryCb.SelectedIndex >= 0)
+            {
+                var ProdCountry = new ProductCountry();
+                var sel = CountryCb.SelectedItem as Country;
+                ProdCountry.ProductId = changedProduct.Id;
+                ProdCountry.CountryId = sel.Id;
+                var isCountry = DataAccess.GetProdCountries().Where(c => c.CountryId == sel.Id && c.ProductId == changedProduct.Id).Count();
+                if (isCountry == 0)
+                {
+                    DataAccess.AddProdCountry(ProdCountry);
+                    UpdateCountryList();
+                }
+            }
+        }
+        private void UpdateCountryList()
+        {
+            CountryLv.ItemsSource = DataAccess.GetProdCountries().Where(e => e.ProductId == changedProduct.Id).ToList();
+        }
+
+        private void BtnRemoveCountry_Click(object sender, RoutedEventArgs e)
+        {
+            if (CountryLv.SelectedItem != null)
+            {
+                var selProductCountry = DB_Connection.connection.ProductCountry.ToList().Find(c => c.ProductId == changedProduct.Id && c.CountryId == (CountryLv.SelectedItem as ProductCountry).CountryId);
+                DataAccess.DeleteProdCountry(selProductCountry);
+                UpdateCountryList();
+            }
+        }
     }
 }

@@ -43,14 +43,30 @@
         <Button x:Name="BtnSaveProduct" 
                 Content="Сохранить"
                 Grid.Column="1" 
-                Grid.Row="7"
+                Grid.Row="6"
                 Height="40"
                 Width="140"
                 Click="BtnSaveProduct_Click"/>
+        
+        <Button x:Name="BtnAddCountry" 
+                Content="Добавить страну"
+                Grid.Column="2" 
+                Grid.Row="6"
+                Height="40"
+                Width="140"
+                Click="BtnAddCountry_Click"/>
+        
+        <Button x:Name="BtnRemoveCountry" 
+                Content="Убрать страну"
+                Grid.Column="2" 
+                Grid.Row="7"
+                Height="40"
+                Width="140"
+                Click="BtnRemoveCountry_Click"/>
 
         <Button x:Name="BtnDeleteProduct"
                 Content="Удалить"
-                Grid.Column="2"
+                Grid.Column="1"
                 Grid.Row="7" 
                 Height="40" 
                 Width="140" 
@@ -86,24 +102,27 @@
         
         <TextBlock Text="Цена"
                    Grid.Column="0" 
-                   Grid.Row="6"
+                   Grid.Row="5"
                    FontSize="15"
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"/>
 
         <TextBlock Text="Страна"
-                   Grid.Column="0"
+                   Grid.Column="2"
                    Grid.Row="5"
                    FontSize="15"
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Top"
                    HorizontalAlignment="Center"/>
 
         <TextBox Grid.Column="1"
                  x:Name="TBId"
                  Grid.Row="1"
                  Height="30"
+                FontSize="15"
                  IsReadOnly="True"
                  Width="60"/>
+        
+        
 
         <TextBox x:Name="TBName" 
                  Grid.Column="1" 
@@ -123,37 +142,56 @@
                       x:Name="UnitCb"
                       Height="30"
                       Width="200"
+                  HorizontalContentAlignment="Center"
                       VerticalContentAlignment="Center"
                       VerticalAlignment="Center"
+                  FontSize="15"
                   Grid.Column="1"
                   Grid.Row="4"/>
+
+        <ListView  x:Name="CountryLv"
+                   ItemsSource="{Binding ProductCountry}"
+                   Width="150"
+                   Height="150"
+                   Grid.Column="3"
+                   Grid.Row="5"
+                   Grid.RowSpan="3">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Label Height="30" FontSize="15" Content="{Binding Country.Name}" Background="{Binding Country.Color}"></Label>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
 
         <ComboBox Margin="2"
                   Name="CountryCb"
-            Grid.Row="5"
-                  Grid.Column="1"
+                  Grid.Row="5"
+                  Grid.Column="2"
+                  FontSize="15"
+                  VerticalAlignment="Bottom"
                   Height="30"/>
+        
         
         <TextBox x:Name="TBPrice" 
                  Grid.Column="1" 
                  Height="30"
                  FontSize="15"
-                 Grid.Row="6"/>
+                 Grid.Row="5"/>
 
         <Image x:Name="ProductImage"
                Source="{Binding Photo}"
                Grid.Column="2" 
-               Grid.ColumnSpan="3" 
+               Grid.ColumnSpan="1" 
                Grid.Row="1" 
-               Grid.RowSpan="5" 
+               Grid.RowSpan="3" 
                Margin="15"/>
 
         <Button x:Name="BtnEditPhoto"
                 Content="Изменить фото" 
                 Grid.Column="2" 
-                Grid.Row="6" 
-                Grid.ColumnSpan="2"
+                Grid.Row="4"
                 Height="40"
                 Click="BtnEditPhoto_Click"
                 Width="140"/>

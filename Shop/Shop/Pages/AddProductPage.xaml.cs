@@ -16,6 +16,7 @@ using Shop.my_ado;
 using Shop.DataBase;
 using Microsoft.Win32;
 using System.IO;
+using System.Collections.ObjectModel;
 
 namespace Shop.Pages
 {
@@ -24,17 +25,14 @@ namespace Shop.Pages
     /// </summary>
     public partial class AddProductPage : Page
     {
-        Product productToAdd = new Product();
-        public AddProductPage()
+        Product productToAdd;
+        public AddProductPage(Product product)
         {
             InitializeComponent();
             UnitCb.ItemsSource = DataAccess.GetUnits();
+            CountryCb.ItemsSource = DataAccess.GetCountries();
+            productToAdd = product;
             DataContext = productToAdd;
-        }
-
-        private void btn_newphoto_Click(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
@@ -45,25 +43,26 @@ namespace Shop.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Product product = new Product();
-            product.Description = TBDescription.Text;
-            product.IsDeleted = false;
-            var unit = UnitCb.SelectedItem as Unit;
-            product.Name = TBName.Text;
-            product.UnitId = unit.Id;
-            product.Photo = productToAdd.Photo;
-            product.AddDate = DateTime.Now.Date;
-            DataAccess.AddProduct(product);
-        }
-
-        private void TBName_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-
-        }
-
-        private void TBDescription_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-
+            try
+            {
+                productToAdd.Description = TBDescription.Text;
+                productToAdd.IsDeleted = false;
+                var unit = UnitCb.SelectedItem as Unit;
+                productToAdd.Name = TBName.Text;
+                productToAdd.UnitId = unit.Id;
+                productToAdd.Photo = productToAdd.Photo;
+                productToAdd.AddDate = DateTime.Now.Date;
+                productToAdd.Price = Int32.Parse(TBPrice.Text);
+                DataAccess.AddProduct(productToAdd);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Цена в цифрах!");
+            }
+            BtnAddCountry.Visibility = Visibility.Visible;
+            BtnRemoveCountry.Visibility = Visibility.Visible;
+            CountryCb.Visibility = Visibility.Visible;
+            CountryLv.Visibility = Visibility.Visible;
         }
 
         private void BtnAddPhoto_Click(object sender, RoutedEventArgs e)
@@ -78,5 +77,38 @@ namespace Shop.Pages
                 ProductPhoto.Source = new BitmapImage(new Uri(openFile.FileName));
             }
         }
+
+        private void BtnAddCountry_Click(object sender, RoutedEventArgs e)
+        {
+            if (CountryCb.SelectedIndex >= 0)
+            {
+                var ProdCountry = new ProductCountry();
+                var sel = CountryCb.SelectedItem as Country;
+                ProdCountry.ProductId = productToAdd.Id;
+                ProdCountry.CountryId = sel.Id;
+                var isCountry = DataAccess.GetProdCountries().Where(c => c.CountryId == sel.Id && c.ProductId == productToAdd.Id).Count();
+                if (isCountry == 0)
+                {
+                    DataAccess.AddProdCountry(ProdCountry);
+                    UpdateCountryList();
+                }
+            }
+        }
+        private void UpdateCountryList()
+        {
+            CountryLv.ItemsSource = DataAccess.GetProdCountries().Where(e => e.ProductId == productToAdd.Id).ToList();
+        }
+
+        private void BtnRemoveCountry_Click(object sender, RoutedEventArgs e)
+        {
+            if (CountryLv.SelectedItem != null)
+            {
+                var selProductCountry = DB_Connection.connection.ProductCountry.ToList().Find(c => c.ProductId == productToAdd.Id && c.CountryId == (CountryLv.SelectedItem as ProductCountry).CountryId);
+                DataAccess.DeleteProdCountry(selProductCountry);
+                UpdateCountryList();
+            }
+        }
+
+        
     }
 }
