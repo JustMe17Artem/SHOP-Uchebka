@@ -79,7 +79,7 @@
                                         DisplayMemberBinding="{Binding AddDate}"/>
                         <GridViewColumn Header="Ед.измерения" Width="70"
                                         DisplayMemberBinding="{Binding Unit.Name}"/>
-                        <GridViewColumn Header="Страна" Width="100">
+                        <GridViewColumn Header="Страна" Width="130">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ListView ItemsSource="{Binding ProductCountry}">
