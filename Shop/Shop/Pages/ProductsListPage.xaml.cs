@@ -60,16 +60,17 @@ namespace Shop.Pages
             {
                 filterProd = filterProd.OrderBy(c => c.Name);
             }
-            else
+            else if(CBAlphabet.SelectedIndex == 2)
             {
                 filterProd = filterProd.OrderByDescending(c => c.Name);
             }
+           
 
             if (CBDate.SelectedIndex == 1)
             {
                 filterProd = filterProd.OrderBy(c => c.AddDate);
             }
-            else
+            else if (CBDate.SelectedIndex == 2)
             {
                 filterProd = filterProd.OrderByDescending(c => c.AddDate);
             }
@@ -85,15 +86,6 @@ namespace Shop.Pages
 
         private void TBSearch_SelectionChanged(object sender, RoutedEventArgs e)
         {
-
-            //if (TBSearch.Text != "")
-            //{
-            //    LVProducts.ItemsSource = DataAccess.GetProductsByNameOrDescription(TBSearch.Text);
-            //}
-            //else
-            //{
-            //    DataContext = this;
-            //}
             Filter();
         }
 
@@ -113,7 +105,7 @@ namespace Shop.Pages
 
         private void CBUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            Filter();
         }
 
         private void CBAlphabet_SelectionChanged(object sender, SelectionChangedEventArgs e)
