@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Shop.my_ado;
+using Shop.DataBase;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Shop.Pages
 {
@@ -20,9 +24,12 @@ namespace Shop.Pages
     /// </summary>
     public partial class AddProductPage : Page
     {
+        Product productToAdd = new Product();
         public AddProductPage()
         {
             InitializeComponent();
+            UnitCb.ItemsSource = DataAccess.GetUnits();
+            DataContext = productToAdd;
         }
 
         private void btn_newphoto_Click(object sender, RoutedEventArgs e)
@@ -32,13 +39,21 @@ namespace Shop.Pages
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-
+            Product product = new Product();
+            product.Description = TBDescription.Text;
+            product.IsDeleted = false;
+            var unit = UnitCb.SelectedItem as Unit;
+            product.Name = TBName.Text;
+            product.UnitId = unit.Id;
+            product.Photo = productToAdd.Photo;
+            product.AddDate = DateTime.Now.Date;
+            DataAccess.AddProduct(product);
         }
 
         private void TBName_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -53,7 +68,15 @@ namespace Shop.Pages
 
         private void BtnAddPhoto_Click(object sender, RoutedEventArgs e)
         {
-
+            OpenFileDialog openFile = new OpenFileDialog()
+            {
+                Filter = "*.png|*.png|*.jpeg|*.jpeg|*.jpg|*.jpg"
+            };
+            if (openFile.ShowDialog().GetValueOrDefault())
+            {
+                productToAdd.Photo = File.ReadAllBytes(openFile.FileName);
+                ProductPhoto.Source = new BitmapImage(new Uri(openFile.FileName));
+            }
         }
     }
 }

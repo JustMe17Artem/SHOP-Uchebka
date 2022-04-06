@@ -77,16 +77,16 @@
                                         Width="200"/>
                         <GridViewColumn Header="Дата добавления" 
                                         DisplayMemberBinding="{Binding AddDate}"/>
-                        <GridViewColumn Header="Ед.измерения"
+                        <GridViewColumn Header="Ед.измерения" Width="70"
                                         DisplayMemberBinding="{Binding Unit.Name}"/>
-                        <GridViewColumn Header="Страна">
+                        <GridViewColumn Header="Страна" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ListView ItemsSource="{Binding ProductCountry}">
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <Label Height="35"
-                                                   Width="250"
+                                                   Width="100"
                                                    Content="{Binding Country.Name}"
                                                    Background="{Binding Country.Color}"/>
                                             </DataTemplate>

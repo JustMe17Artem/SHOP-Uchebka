@@ -100,6 +100,20 @@ namespace Shop.DataBase
                 return false;
             }
         }
+        public static bool AddProduct(Product product)
+        {
+            
+            try
+            {
+                DB_Connection.connection.Product.Add(product);
+                DB_Connection.connection.SaveChanges();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public static User GetUser(string login, string password)
         {
             ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);

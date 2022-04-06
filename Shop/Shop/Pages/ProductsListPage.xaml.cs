@@ -24,6 +24,7 @@ namespace Shop.Pages
     public partial class ProductsListPage : Page
     {
         private static ObservableCollection<Product> products { get; set; }
+        
         public static User currentUser;
         public ProductsListPage(User user)
         {
@@ -32,7 +33,10 @@ namespace Shop.Pages
             LVProducts.ItemsSource = products;
             DataContext = this;
             currentUser = user;
-
+            if (user.RoleId == 3)
+            {
+                BtnAdd.Visibility = Visibility.Hidden;
+            }
         }
 
         private void TBSearch_SelectionChanged(object sender, RoutedEventArgs e)
@@ -50,8 +54,16 @@ namespace Shop.Pages
 
         private void LVProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            var selectedProduct = (sender as ListView).SelectedItem as Product;
-            NavigationService.Navigate(new ProductEditPage(selectedProduct));
+            if (currentUser.RoleId != 3 )
+            {
+                var selectedProduct = (sender as ListView).SelectedItem as Product;
+                NavigationService.Navigate(new ProductEditPage(selectedProduct));
+            }
+            else
+            {
+
+            }
+            
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
