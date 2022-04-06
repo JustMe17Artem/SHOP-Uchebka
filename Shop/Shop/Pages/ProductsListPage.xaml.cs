@@ -64,7 +64,6 @@ namespace Shop.Pages
             {
                 filterProd = filterProd.OrderByDescending(c => c.Name);
             }
-           
 
             if (CBDate.SelectedIndex == 1)
             {
