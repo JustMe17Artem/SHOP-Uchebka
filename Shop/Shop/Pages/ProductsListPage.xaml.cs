@@ -56,7 +56,7 @@ namespace Shop.Pages
         {
             if (currentUser.RoleId != 3 )
             {
-                var selectedProduct = (sender as ListView).SelectedItem as Product;
+                var selectedProduct = LVProducts.SelectedItem as Product;
                 NavigationService.Navigate(new ProductEditPage(selectedProduct));
             }
             else
@@ -67,7 +67,7 @@ namespace Shop.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddProductPage(new Product()));
+            NavigationService.Navigate(new AddProductPage());
         }
     }
 }

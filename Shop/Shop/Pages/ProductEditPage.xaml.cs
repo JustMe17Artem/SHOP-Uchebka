@@ -69,7 +69,6 @@ namespace Shop.Pages
             {
                 MessageBox.Show("Цена в цифрах!");
             }
-
         }
 
         private void BtnEditPhoto_Click(object sender, RoutedEventArgs e)
@@ -110,7 +109,7 @@ namespace Shop.Pages
         {
             if (CountryLv.SelectedItem != null)
             {
-                var selProductCountry = DB_Connection.connection.ProductCountry.ToList().Find(c => c.ProductId == changedProduct.Id && c.CountryId == (CountryLv.SelectedItem as ProductCountry).CountryId);
+                var selProductCountry = DataAccess.GetProdCountries().ToList().Find(c => c.ProductId == changedProduct.Id && c.CountryId == (CountryLv.SelectedItem as ProductCountry).CountryId);
                 DataAccess.DeleteProdCountry(selProductCountry);
                 UpdateCountryList();
             }

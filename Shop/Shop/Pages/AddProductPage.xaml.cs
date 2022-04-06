@@ -26,12 +26,11 @@ namespace Shop.Pages
     public partial class AddProductPage : Page
     {
         Product productToAdd;
-        public AddProductPage(Product product)
+        public AddProductPage()
         {
             InitializeComponent();
             UnitCb.ItemsSource = DataAccess.GetUnits();
-            CountryCb.ItemsSource = DataAccess.GetCountries();
-            productToAdd = product;
+            CountryCb.ItemsSource = DataAccess.GetCountries();;
             DataContext = productToAdd;
         }
 
@@ -48,8 +47,8 @@ namespace Shop.Pages
                 productToAdd.Description = TBDescription.Text;
                 productToAdd.IsDeleted = false;
                 var unit = UnitCb.SelectedItem as Unit;
-                productToAdd.Name = TBName.Text;
                 productToAdd.UnitId = unit.Id;
+                productToAdd.Name = TBName.Text;
                 productToAdd.Photo = productToAdd.Photo;
                 productToAdd.AddDate = DateTime.Now.Date;
                 productToAdd.Price = Int32.Parse(TBPrice.Text);
@@ -103,12 +102,10 @@ namespace Shop.Pages
         {
             if (CountryLv.SelectedItem != null)
             {
-                var selProductCountry = DB_Connection.connection.ProductCountry.ToList().Find(c => c.ProductId == productToAdd.Id && c.CountryId == (CountryLv.SelectedItem as ProductCountry).CountryId);
+                var selProductCountry = DataAccess.GetProdCountries().ToList().Find(c => c.ProductId == productToAdd.Id && c.CountryId == (CountryLv.SelectedItem as ProductCountry).CountryId);
                 DataAccess.DeleteProdCountry(selProductCountry);
                 UpdateCountryList();
             }
         }
-
-        
     }
 }
