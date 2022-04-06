@@ -26,12 +26,13 @@ namespace Shop.Pages
     public partial class AddProductPage : Page
     {
         Product productToAdd;
-        public AddProductPage()
+        public AddProductPage(Product product)
         {
             InitializeComponent();
             UnitCb.ItemsSource = DataAccess.GetUnits();
-            CountryCb.ItemsSource = DataAccess.GetCountries();;
+            CountryCb.ItemsSource = DataAccess.GetCountries();
             DataContext = productToAdd;
+            productToAdd = product;
         }
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
