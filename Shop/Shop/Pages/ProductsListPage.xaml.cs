@@ -37,19 +37,64 @@ namespace Shop.Pages
             {
                 BtnAdd.Visibility = Visibility.Hidden;
             }
+            var allUnits = new ObservableCollection<Unit>(DB_Connection.connection.Unit.ToList());
+            allUnits.Insert(0, new Unit() { Id = -1, Name = "Все" });
+            CBUnit.ItemsSource = allUnits;
+            CBUnit.DisplayMemberPath = "Name";
+        }
+        private void Filter()
+        {
+            var filterProd = (IEnumerable<Product>)DB_Connection.connection.Product.Where(a => a.IsDeleted == false).ToList();
+
+            if (TBSearch.Text != "")
+            {
+                filterProd = DataAccess.GetProductsByNameOrDescription(TBSearch.Text);
+            }
+
+            if (CBUnit.SelectedIndex > 0)
+            {
+                filterProd = filterProd.Where(c => c.UnitId == (CBUnit.SelectedItem as Unit).Id || c.UnitId == -1);
+            }
+
+            if (CBAlphabet.SelectedIndex == 1)
+            {
+                filterProd = filterProd.OrderBy(c => c.Name);
+            }
+            else
+            {
+                filterProd = filterProd.OrderByDescending(c => c.Name);
+            }
+
+            if (CBDate.SelectedIndex == 1)
+            {
+                filterProd = filterProd.OrderBy(c => c.AddDate);
+            }
+            else
+            {
+                filterProd = filterProd.OrderByDescending(c => c.AddDate);
+            }
+
+            if (CBMonth.IsChecked.GetValueOrDefault())
+            {
+                var date = DateTime.Now.Month;
+                filterProd = filterProd.Where(c => c.AddDate.Month == date);
+            }
+
+            LVProducts.ItemsSource = filterProd;
         }
 
         private void TBSearch_SelectionChanged(object sender, RoutedEventArgs e)
         {
-            
-            if (TBSearch.Text != "")
-            {
-                LVProducts.ItemsSource = DataAccess.GetProductsByNameOrDescription(TBSearch.Text);
-            }
-            else
-            {
-                DataContext = this;
-            }
+
+            //if (TBSearch.Text != "")
+            //{
+            //    LVProducts.ItemsSource = DataAccess.GetProductsByNameOrDescription(TBSearch.Text);
+            //}
+            //else
+            //{
+            //    DataContext = this;
+            //}
+            Filter();
         }
 
         private void LVProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -59,15 +104,31 @@ namespace Shop.Pages
                 var selectedProduct = LVProducts.SelectedItem as Product;
                 NavigationService.Navigate(new ProductEditPage(selectedProduct));
             }
-            else
-            {
-
-            }
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddProductPage());
+        }
+
+        private void CBUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void CBAlphabet_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void CBDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Filter();
+        }
+
+        private void CBMonth_Click(object sender, RoutedEventArgs e)
+        {
+            Filter();
         }
     }
 }
