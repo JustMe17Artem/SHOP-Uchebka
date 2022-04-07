@@ -50,8 +50,12 @@ namespace Shop.Pages
             {
                 filterProd = DataAccess.GetProductsByNameOrDescription(TBSearch.Text);
             }
+            if(CBUnit.SelectedIndex == 0)
+            {
+                filterProd = DataAccess.GetProductsByNameOrDescription(TBSearch.Text);
+            }
 
-            if (CBUnit.SelectedIndex > 0)
+            else if (CBUnit.SelectedIndex > 0)
             {
                 filterProd = filterProd.Where(c => c.UnitId == (CBUnit.SelectedItem as Unit).Id || c.UnitId == -1);
             }
@@ -99,7 +103,11 @@ namespace Shop.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddProductPage(new Product()));
+            if(currentUser.RoleId != 3)
+            {
+                NavigationService.Navigate(new AddProductPage(new Product()));
+            }
+            
         }
 
         private void CBUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)

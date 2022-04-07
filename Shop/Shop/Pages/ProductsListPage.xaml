@@ -99,6 +99,11 @@
                 </ListView.View>
             </ListView>
 
+            <TextBlock Text="По единнице измерения" 
+                       Grid.Row="7"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"/>
+
             <ComboBox Name="CBUnit"
                       Grid.Column="0"
                       Grid.Row="7"
@@ -107,6 +112,12 @@
                       Width="120"
                       SelectionChanged="CBUnit_SelectionChanged"/>
 
+            <TextBlock Text="По алфавиту" 
+                       Grid.Row="7"
+                       Grid.Column="1"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"/>
+            
             <ComboBox Name="CBAlphabet"
                       Grid.Column="1"
                       Grid.Row="7" 
@@ -119,10 +130,16 @@
                 <ComboBoxItem Content="от Я до А"/>
             </ComboBox>
 
+            <TextBlock Text="По дате" 
+                       Grid.Row="7"
+                       Grid.Column="2"
+                       VerticalAlignment="Top"
+                       HorizontalAlignment="Center"/>
+
             <ComboBox Name="CBDate"
                       Grid.Column="2" 
                       Grid.Row="7" 
-                      Width="200"
+                      Width="120"
                       HorizontalAlignment="Center"
                       VerticalAlignment="Center"
                       SelectionChanged="CBDate_SelectionChanged">
