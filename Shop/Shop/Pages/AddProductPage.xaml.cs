@@ -17,6 +17,7 @@ using Shop.DataBase;
 using Microsoft.Win32;
 using System.IO;
 using System.Collections.ObjectModel;
+using System.Text.RegularExpressions;
 
 namespace Shop.Pages
 {
@@ -45,15 +46,23 @@ namespace Shop.Pages
         {
             try
             {
-                productToAdd.Description = TBDescription.Text;
-                productToAdd.IsDeleted = false;
-                var unit = UnitCb.SelectedItem as Unit;
-                productToAdd.UnitId = unit.Id;
-                productToAdd.Name = TBName.Text;
-                productToAdd.Photo = productToAdd.Photo;
-                productToAdd.AddDate = DateTime.Now.Date;
-                productToAdd.Price = Int32.Parse(TBPrice.Text);
-                DataAccess.AddProduct(productToAdd);
+                if(InvalidName.Text.Length == 0)
+                {
+                    productToAdd.Description = TBDescription.Text;
+                    productToAdd.IsDeleted = false;
+                    var unit = UnitCb.SelectedItem as Unit;
+                    productToAdd.UnitId = unit.Id;
+                    productToAdd.Name = TBName.Text;
+                    productToAdd.Photo = productToAdd.Photo;
+                    productToAdd.AddDate = DateTime.Now.Date;
+                    productToAdd.Price = Int32.Parse(TBPrice.Text);
+                    DataAccess.AddProduct(productToAdd);
+                }
+                else
+                {
+                    MessageBox.Show("Введите корректное название");
+                }
+                
             }
             catch (FormatException)
             {
@@ -106,6 +115,22 @@ namespace Shop.Pages
                 var selProductCountry = DataAccess.GetProdCountries().ToList().Find(c => c.ProductId == productToAdd.Id && c.CountryId == (CountryLv.SelectedItem as ProductCountry).CountryId);
                 DataAccess.DeleteProdCountry(selProductCountry);
                 UpdateCountryList();
+            }
+        }
+
+        private void TBName_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsLetter(e.Text, 0) && e.Text != "-")
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void TBDescription_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!Char.IsLetter(e.Text, 0) && e.Text != "-")
+            {
+                e.Handled = true;
             }
         }
     }

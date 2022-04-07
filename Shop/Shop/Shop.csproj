@@ -222,21 +222,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="img\logo.jpg" />
-    <Resource Include="img\апельсин.jpg" />
-    <Resource Include="img\горчица.jpg" />
-    <Resource Include="img\красный перец.jpg" />
-    <Resource Include="img\лимон.jpg" />
-    <Resource Include="img\масло растительное.jpg" />
-    <Resource Include="img\масло сливочное.jpg" />
-    <Resource Include="img\овсяные хлопья.jpg" />
-    <Resource Include="img\петрушка.jpg" />
-    <Resource Include="img\помидор.jpg" />
-    <Resource Include="img\рис.jpg" />
-    <Resource Include="img\рыба.jpg" />
-    <Resource Include="img\сахар.jpg" />
-    <Resource Include="img\соль.jpg" />
-    <Resource Include="img\фасоль стручковая.jpg" />
-    <Resource Include="img\яйцо.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

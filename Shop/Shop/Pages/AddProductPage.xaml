@@ -57,7 +57,7 @@
                    Grid.Column="0"
                    Grid.Row="1"
                    FontSize="15"
-                   VerticalAlignment="Center"
+                   VerticalAlignment="Top"
                    HorizontalAlignment="Center"/>
         
         <TextBlock Text="Описание"
@@ -79,7 +79,14 @@
                    VerticalAlignment="Center"
                    HorizontalAlignment="Center"
                    Grid.Column="0" Grid.Row="4"/>
-
+        <TextBlock x:Name="InvalidName"
+                   Foreground="Red"
+                   Text=""
+                   Grid.Column="1"
+                   Grid.Row="1" 
+                   VerticalAlignment="Bottom"
+                   TextAlignment="Center"
+                   FontSize="15"/>
 
         <TextBlock Text="Страна"
                    Grid.Column="2"
@@ -92,14 +99,17 @@
                  Grid.Column="1"
                  Grid.Row="1" 
                  Height="30"
-                 FontSize="15"/>
+                 VerticalAlignment="Top"
+                 FontSize="15"
+                 PreviewTextInput="TBName_PreviewTextInput"/>
         
         <TextBox x:Name="TBDescription"
                  Grid.Column="1"
                  Grid.Row="2" 
                  Height="50"
                  TextWrapping="Wrap"
-                 FontSize="15"/>
+                 FontSize="15"
+                 PreviewTextInput="TBDescription_PreviewTextInput"/>
         
         <ComboBox SelectedItem="{Binding Unit}" 
                       DisplayMemberPath="Name" 

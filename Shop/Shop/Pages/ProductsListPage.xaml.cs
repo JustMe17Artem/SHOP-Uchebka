@@ -103,11 +103,7 @@ namespace Shop.Pages
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            if(currentUser.RoleId != 3)
-            {
-                NavigationService.Navigate(new AddProductPage(new Product()));
-            }
-            
+            NavigationService.Navigate(new AddProductPage(new Product()));   
         }
 
         private void CBUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
