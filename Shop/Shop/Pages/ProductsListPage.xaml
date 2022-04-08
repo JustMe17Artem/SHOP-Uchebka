@@ -26,6 +26,16 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+            <ComboBox  Width="100"
+                       Margin="80,0,0,0" 
+                       Name="SortCount"
+                       Height="30"
+                       SelectionChanged="SortCount_SelectionChanged">
+                <ComboBoxItem  Selected="ComboBoxItem_Selected" Content="Все" ></ComboBoxItem>
+                <ComboBoxItem Selected="ComboBoxItem_Selected" Content="2" ></ComboBoxItem>
+                <ComboBoxItem  Selected="ComboBoxItem_Selected" Content="3"></ComboBoxItem>
+                <ComboBoxItem Selected="ComboBoxItem_Selected" Content="4"></ComboBoxItem>
+            </ComboBox>
 
             <Image Source= "/img/logo.jpg"
                    Grid.ColumnSpan="2"
@@ -35,6 +45,7 @@
             <TextBox x:Name="TBSearch"
                      Grid.Row="0" 
                      Grid.Column="1" 
+                     Margin="40,0,0,0"
                      Grid.ColumnSpan="2"
                      Height="30" 
                      VerticalAlignment="Center" 
@@ -155,6 +166,23 @@
                       HorizontalAlignment="Center" 
                       VerticalAlignment="Center"
                       Click="CBMonth_Click"/>
+
+            <Button Margin="-55,0,0,0"
+                    Content="&lt;"
+                    Width="25"
+                    Height="30"
+                    Name="BackListBtn"
+                    Click="BackListBtn_Click"/>
+
+
+            <Button Margin="15,0,0,0" 
+                    Content="&gt;" 
+                    Width="25"
+                    Grid.ColumnSpan="2"
+                    Height="30"
+                    Name="ForwardListBtn"
+                    Click="ForwardListBtn_Click"/>
+
         </Grid>
     </Border>
 </Page>

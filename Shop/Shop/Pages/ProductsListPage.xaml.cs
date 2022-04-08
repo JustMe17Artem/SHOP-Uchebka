@@ -26,6 +26,8 @@ namespace Shop.Pages
         private static ObservableCollection<Product> products { get; set; }
         
         public static User currentUser;
+
+        int actualPage;
         public ProductsListPage(User user)
         {
             InitializeComponent();
@@ -84,11 +86,25 @@ namespace Shop.Pages
                 filterProd = filterProd.Where(c => c.AddDate.Month == date);
             }
 
+            if (SortCount.SelectedIndex > 0 && filterProd.Count() > 0)
+            {
+                var cbb = SortCount.SelectedItem as ComboBoxItem;
+                int SelCount = Convert.ToInt32(cbb.Content);
+                filterProd = filterProd.Skip(SelCount * actualPage).Take(SelCount);
+                if (filterProd.Count() == 0)
+                {
+                    actualPage--;
+                    return;
+                }
+                LVProducts.ItemsSource = filterProd;
+            }
+
             LVProducts.ItemsSource = filterProd;
         }
 
         private void TBSearch_SelectionChanged(object sender, RoutedEventArgs e)
         {
+            actualPage = 0;
             Filter();
         }
 
@@ -108,21 +124,50 @@ namespace Shop.Pages
 
         private void CBUnit_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            actualPage = 0; 
             Filter();
         }
 
         private void CBAlphabet_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            actualPage = 0;
             Filter();
         }
 
         private void CBDate_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            actualPage = 0;
             Filter();
         }
 
         private void CBMonth_Click(object sender, RoutedEventArgs e)
         {
+            actualPage = 0;
+            Filter();
+        }
+
+        private void SortCount_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            actualPage = 0;
+            Filter();
+        }
+
+        private void BackListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            actualPage--;
+            if (actualPage < 0)
+                actualPage = 0;
+            Filter();
+        }
+        
+        private void ForwardListBtn_Click(object sender, RoutedEventArgs e)
+        {
+            actualPage++;
+            Filter();
+        }
+        private void ComboBoxItem_Selected(object sender, RoutedEventArgs e)
+        {
+            actualPage = 0;
             Filter();
         }
     }

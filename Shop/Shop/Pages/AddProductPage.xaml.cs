@@ -38,7 +38,7 @@ namespace Shop.Pages
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new ProductsListPage(ProductsListPage.currentUser));
         }
 
 
