@@ -15,20 +15,12 @@ namespace Shop.Pages
     public partial class AuthoPage : Page
     {
         private int IncorrectTry = 0;
+        private ObservableCollection<BanSession> sessions = new ObservableCollection<BanSession>(DB_Connection.connection.BanSession);
+        
         public AuthoPage()
         {
             InitializeComponent();
-            ObservableCollection<BanSession> sessions = new ObservableCollection<BanSession>(DB_Connection.connection.BanSession);
-            var lastBanSession = sessions.Last();
-            if(DateTime.Now < lastBanSession.DateEnd)
-            {
-                BlockComponents();
-            }
             TBLogin.Text = Properties.Settings.Default.Login;
-        }
-        private void BlockComponents()
-        {
-            BtnAuthorize.IsEnabled = false;
         }
 
         private void BtnRegistrate_Click(object sender, RoutedEventArgs e)
@@ -38,7 +30,8 @@ namespace Shop.Pages
 
         private void BtnAuthorize_Click(object sender, RoutedEventArgs e)
         {
-            if(DataAccess.IsCorrectUser(TBLogin.Text, TBPassword.Password))
+            var lastBanSession = sessions.Last();
+            if (DataAccess.IsCorrectUser(TBLogin.Text, TBPassword.Password))
             {
                 if (RememberUser.IsChecked.GetValueOrDefault())
                     Properties.Settings.Default.Login = TBLogin.Text;
@@ -48,13 +41,16 @@ namespace Shop.Pages
                 MessageBox.Show("WELCUM");
                 NavigationService.Navigate(new ProductsListPage(DataAccess.GetUser(TBLogin.Text, TBPassword.Password)));
             }
+            else if(DateTime.Now < lastBanSession.DateEnd)
+            {
+                MessageBox.Show($"Бан закончится {lastBanSession.DateEnd}");
+            }
             else
             {
                 MessageBox.Show("who da fuck r' u? identify yo'self, nigga");
                 IncorrectTry++;
                 if(IncorrectTry == 3)
                 {
-                    BtnAuthorize.IsEnabled = false;
                     BanSession session = new BanSession();
                     session.DateStart = DateTime.Now;
                     session.DateEnd = DateTime.Now.AddMinutes(1);

@@ -73,7 +73,7 @@
                     <GridView>
                         <GridViewColumn Header="№" 
                                         DisplayMemberBinding="{Binding Id}"
-                                        Width="40"/>
+                                        Width="30"/>
                         <GridViewColumn Header="Фото">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
