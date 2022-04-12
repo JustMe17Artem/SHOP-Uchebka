@@ -16,8 +16,6 @@ namespace Shop.Pages
     public partial class AuthoPage : Page
     {
         private int IncorrectTry = 0;
-        
-        
         public AuthoPage()
         {
             InitializeComponent();
@@ -26,11 +24,9 @@ namespace Shop.Pages
 
         private void BtnRegistrate_Click(object sender, RoutedEventArgs e)
         {
-           NavigationService.Navigate(new RegPage());
+            NavigationService.Navigate(new RegPage());
         }
-
         
-
         private void BtnAuthorize_Click(object sender, RoutedEventArgs e)
         {
             if (DataAccess.IsCorrectUser(TBLogin.Text, TBPassword.Password) && DateTime.Now > DataAccess.GetLastBanSession().DateEnd)
@@ -44,9 +40,7 @@ namespace Shop.Pages
                 NavigationService.Navigate(new ProductsListPage(DataAccess.GetUser(TBLogin.Text, TBPassword.Password)));
             }
             else if(DateTime.Now < DataAccess.GetLastBanSession().DateEnd)
-            {
                 MessageBox.Show($"Бан закончится {DataAccess.GetLastBanSession().DateEnd}");
-            }
             else if(DataAccess.IsIncorrectUser(TBLogin.Text, TBPassword.Password) && DataAccess.GetLastBanSession().DateEnd < DateTime.Now)
             {
                 MessageBox.Show("who da fuck r' u? identify yo'self, nigga");

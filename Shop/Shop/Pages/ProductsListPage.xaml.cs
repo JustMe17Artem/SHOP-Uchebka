@@ -24,9 +24,7 @@ namespace Shop.Pages
     public partial class ProductsListPage : Page
     {
         private static ObservableCollection<Product> products { get; set; }
-        
         public static User currentUser;
-
         int actualPage;
         public ProductsListPage(User user)
         {
@@ -98,7 +96,6 @@ namespace Shop.Pages
                 }
                 LVProducts.ItemsSource = filterProd;
             }
-
             LVProducts.ItemsSource = filterProd;
         }
 

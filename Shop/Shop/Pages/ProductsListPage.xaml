@@ -73,7 +73,7 @@
                     <GridView>
                         <GridViewColumn Header="№" 
                                         DisplayMemberBinding="{Binding Id}"
-                                        Width="30"/>
+                                        Width="25"/>
                         <GridViewColumn Header="Фото">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
@@ -85,10 +85,11 @@
                                         DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Описание" 
                                         DisplayMemberBinding="{Binding Description}"
-                                        Width="200"/>
+                                        Width="260"/>
                         <GridViewColumn Header="Дата добавления" 
+                                        Width="140"
                                         DisplayMemberBinding="{Binding AddDate}"/>
-                        <GridViewColumn Header="Ед.измерения" Width="70"
+                        <GridViewColumn Header="Ед.измерения" Width="90"
                                         DisplayMemberBinding="{Binding Unit.Name}"/>
                         <GridViewColumn Header="Страна" Width="130">
                             <GridViewColumn.CellTemplate>
