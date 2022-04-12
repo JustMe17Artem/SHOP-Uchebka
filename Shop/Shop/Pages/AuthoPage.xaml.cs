@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Shop.DataBase;
+using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using Shop.my_ado;
 
@@ -15,7 +16,7 @@ namespace Shop.Pages
     public partial class AuthoPage : Page
     {
         private int IncorrectTry = 0;
-        private ObservableCollection<BanSession> sessions = new ObservableCollection<BanSession>(DB_Connection.connection.BanSession);
+        
         
         public AuthoPage()
         {
@@ -28,10 +29,11 @@ namespace Shop.Pages
            NavigationService.Navigate(new RegPage());
         }
 
+        
+
         private void BtnAuthorize_Click(object sender, RoutedEventArgs e)
         {
-            var lastBanSession = sessions.Last();
-            if (DataAccess.IsCorrectUser(TBLogin.Text, TBPassword.Password))
+            if (DataAccess.IsCorrectUser(TBLogin.Text, TBPassword.Password) && DateTime.Now > DataAccess.GetLastBanSession().DateEnd)
             {
                 if (RememberUser.IsChecked.GetValueOrDefault())
                     Properties.Settings.Default.Login = TBLogin.Text;
@@ -41,11 +43,11 @@ namespace Shop.Pages
                 MessageBox.Show("WELCUM");
                 NavigationService.Navigate(new ProductsListPage(DataAccess.GetUser(TBLogin.Text, TBPassword.Password)));
             }
-            else if(DateTime.Now < lastBanSession.DateEnd)
+            else if(DateTime.Now < DataAccess.GetLastBanSession().DateEnd)
             {
-                MessageBox.Show($"Бан закончится {lastBanSession.DateEnd}");
+                MessageBox.Show($"Бан закончится {DataAccess.GetLastBanSession().DateEnd}");
             }
-            else
+            else if(DataAccess.IsIncorrectUser(TBLogin.Text, TBPassword.Password) && DataAccess.GetLastBanSession().DateEnd < DateTime.Now)
             {
                 MessageBox.Show("who da fuck r' u? identify yo'self, nigga");
                 IncorrectTry++;
@@ -56,6 +58,7 @@ namespace Shop.Pages
                     session.DateEnd = DateTime.Now.AddMinutes(1);
                     DataAccess.StartBan(session);
                     MessageBox.Show("Бан на 1 минуту");
+                    IncorrectTry = 0;
                 }
             }
         }

@@ -167,5 +167,11 @@ namespace Shop.DataBase
             var currentUser = users.Where(u => u.Id == idUser).FirstOrDefault();
             return currentUser;
         }
+        public static BanSession GetLastBanSession()
+        {
+            ObservableCollection<BanSession> sessions = new ObservableCollection<BanSession>(DB_Connection.connection.BanSession);
+            BanSession lastBanSession = sessions.Last();
+            return lastBanSession;
+        }
     }
 }
