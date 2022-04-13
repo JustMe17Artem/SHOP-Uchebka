@@ -10,22 +10,7 @@ namespace Shop.DataBase
 {
     public static class DataAccess
     {
-        public static ObservableCollection<Product> GetProducts()
-        {
-            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(p => p.IsDeleted == false || p.IsDeleted == null));
-            return products;
-        }
-        public static ObservableCollection<ProductCountry> GetProdCountries()
-        {
-            ObservableCollection<ProductCountry> prodCountries = new ObservableCollection<ProductCountry>(DB_Connection.connection.ProductCountry);
-            return prodCountries;
-        }
-
-        public  static  ObservableCollection<Product> GetProductsByNameOrDescription(string name_or_description)
-        {
-            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(n => (n.Name.Contains(name_or_description) || n.Description.Contains(name_or_description)) && n.IsDeleted == false));
-            return products;
-        }
+        
         public static bool IsCorrectUser(string login, string password)
         {
             ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
@@ -133,7 +118,6 @@ namespace Shop.DataBase
         }
         public static bool AddProduct(Product product)
         {
-            
             try
             {
                 DB_Connection.connection.Product.Add(product);
@@ -145,11 +129,49 @@ namespace Shop.DataBase
                 return false;
             }
         }
-        public static User GetUser(string login, string password)
+        public static bool AddOrder(Order order)
         {
-            ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
-            var currentUser = users.Where(u => u.Login == login && u.Password == password).FirstOrDefault();
-            return currentUser;
+            if (GetOrders().Where(o => o.Id == order.Id).Count() == 0)
+            {
+                order.Date = DateTime.Now.Date;
+                DB_Connection.connection.Order.Add(order);
+                DB_Connection.connection.SaveChanges();
+            }
+            else
+                DB_Connection.connection.Order.SingleOrDefault(p => p.Id == order.Id);
+
+            return true;
+
+        }
+
+        public static ObservableCollection<Product> GetProducts()
+        {
+            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(p => p.IsDeleted == false || p.IsDeleted == null));
+            return products;
+        }
+
+        public static ObservableCollection<Order> GetOrders()
+        {
+            ObservableCollection<Order> orders = new ObservableCollection<Order>(DB_Connection.connection.Order);
+            return orders;
+        }
+
+        public static ObservableCollection<StatusOrder> GetStatusOrder()
+        {
+            ObservableCollection<StatusOrder> statuses = new ObservableCollection<StatusOrder>(DB_Connection.connection.StatusOrder);
+            return statuses;
+        }
+
+        public static ObservableCollection<ProductCountry> GetProdCountries()
+        {
+            ObservableCollection<ProductCountry> prodCountries = new ObservableCollection<ProductCountry>(DB_Connection.connection.ProductCountry);
+            return prodCountries;
+        }
+
+        public static ObservableCollection<Product> GetProductsByNameOrDescription(string name_or_description)
+        {
+            ObservableCollection<Product> products = new ObservableCollection<Product>(DB_Connection.connection.Product.Where(n => (n.Name.Contains(name_or_description) || n.Description.Contains(name_or_description)) && n.IsDeleted == false));
+            return products;
         }
         public static ObservableCollection<Unit> GetUnits()
         {
@@ -161,10 +183,22 @@ namespace Shop.DataBase
             ObservableCollection<Country> countries = new ObservableCollection<Country>(DB_Connection.connection.Country);
             return countries;
         }
+        public static ObservableCollection<Supplier> GetSuppliers()
+        {
+            ObservableCollection<Supplier> suppliers = new ObservableCollection<Supplier>(DB_Connection.connection.Supplier);
+            return suppliers;
+        }
+
         public static User GetUser(int idUser)
         {
             ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
             var currentUser = users.Where(u => u.Id == idUser).FirstOrDefault();
+            return currentUser;
+        }
+        public static User GetUser(string login, string password)
+        {
+            ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
+            var currentUser = users.Where(u => u.Login == login && u.Password == password).FirstOrDefault();
             return currentUser;
         }
         public static BanSession GetLastBanSession()

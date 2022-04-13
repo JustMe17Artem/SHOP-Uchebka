@@ -89,6 +89,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\OrderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\ProductEditPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -177,6 +181,9 @@
     </Compile>
     <Compile Include="Pages\AuthoPage.xaml.cs">
       <DependentUpon>AuthoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\OrderPage.xaml.cs">
+      <DependentUpon>OrderPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\ProductEditPage.xaml.cs">
       <DependentUpon>ProductEditPage.xaml</DependentUpon>

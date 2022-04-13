@@ -30,3 +30,5 @@ C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\AddProductP
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\AddProductPage.baml
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\App.baml
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Shop.csproj.AssemblyReference.cache
+C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\OrderPage.g.cs
+C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\OrderPage.baml

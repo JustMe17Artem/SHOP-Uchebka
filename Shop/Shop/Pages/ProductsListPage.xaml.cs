@@ -167,5 +167,13 @@ namespace Shop.Pages
             actualPage = 0;
             Filter();
         }
+
+        private void BtnOrder_Click(object sender, RoutedEventArgs e)
+        {
+            if(currentUser.RoleId == 3)
+            {
+                NavigationService.Navigate(new OrderPage(currentUser));
+            }
+        }
     }
 }

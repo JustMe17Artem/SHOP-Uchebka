@@ -63,6 +63,19 @@
                     HorizontalAlignment="Right"
                     Width="100"/>
 
+            <Button x:Name="BtnOrder"
+                    Content="Заказать" 
+                    Foreground="Black"
+                    Grid.Column="3"
+                    Background="#FF553026"
+                    Grid.Row="0"
+                    Height="55"
+                    Visibility="Visible"
+                    Click="BtnOrder_Click" 
+                    HorizontalAlignment="Left"
+                    Width="100"/>
+
+
             <ListView x:Name="LVProducts" ItemsSource="{Binding products}" 
                       Grid.Column="0"
                       Grid.ColumnSpan="4" 
@@ -74,7 +87,8 @@
                         <GridViewColumn Header="№" 
                                         DisplayMemberBinding="{Binding Id}"
                                         Width="25"/>
-                        <GridViewColumn Header="Фото">
+                        <GridViewColumn Header="Фото"
+                                        Width="110">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <Image Source="{Binding Photo}" Height="70"/>
@@ -82,14 +96,16 @@
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Наименование" 
+                                        Width="80"
                                         DisplayMemberBinding="{Binding Name}"/>
                         <GridViewColumn Header="Описание" 
                                         DisplayMemberBinding="{Binding Description}"
-                                        Width="260"/>
+                                        Width="230"/>
                         <GridViewColumn Header="Дата добавления" 
-                                        Width="140"
+                                        Width="110"
+                                        
                                         DisplayMemberBinding="{Binding AddDate}"/>
-                        <GridViewColumn Header="Ед.измерения" Width="90"
+                        <GridViewColumn Header="Ед.измерения" Width="70"
                                         DisplayMemberBinding="{Binding Unit.Name}"/>
                         <GridViewColumn Header="Страна" Width="130">
                             <GridViewColumn.CellTemplate>
