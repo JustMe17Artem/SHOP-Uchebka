@@ -23,11 +23,11 @@ namespace Shop.Pages
     /// </summary>
     public partial class OrderPage : Page
     {
-        public static User currentUser;
-        public List<Product> Products { get; set; }
-        public Order Order { get; set; }
-        public List<StatusOrder> StatusOrders { get; set; }
-        public List<ProductOrder> ProductOrders { get; set; }
+        private static User currentUser;
+        private List<Product> Products { get; set; }
+        private Order Order { get; set; }
+        private List<StatusOrder> StatusOrders { get; set; }
+        private List<ProductOrder> ProductOrders { get; set; }
         public OrderPage(User user)
         {
             InitializeComponent();
