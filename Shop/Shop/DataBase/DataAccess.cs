@@ -129,11 +129,12 @@ namespace Shop.DataBase
                 return false;
             }
         }
-        public static bool AddOrder(Order order)
+        public static bool AddOrder(Order order, User user)
         {
             if (GetOrders().Where(o => o.Id == order.Id).Count() == 0)
             {
                 order.Date = DateTime.Now.Date;
+                order.ClientId = user.Id;
                 DB_Connection.connection.Order.Add(order);
                 DB_Connection.connection.SaveChanges();
             }

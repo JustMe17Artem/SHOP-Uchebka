@@ -63,7 +63,7 @@ namespace Shop.Pages
             {
                 Order.ProductOrder.Add(productOrder);
             }
-            DataAccess.AddOrder(Order);
+            DataAccess.AddOrder(Order, currentUser);
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
