@@ -23,18 +23,19 @@ namespace Shop.Pages
     /// </summary>
     public partial class OrdersPage : Page
     {
-        private User currentUser;
-        public OrdersPage(User user)
+        private Worker currentWorker;
+        public OrdersPage(Worker worker)
         {
             InitializeComponent();
-            currentUser = user;
+            currentWorker = worker;
             DGOrders.ItemsSource = DataAccess.GetOrders();
             DataContext = this;
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new OrderPage(currentUser));
+            User user = currentWorker.User;
+            NavigationService.Navigate(new OrderPage(user));
         }
 
         private void BtnOpen_Click(object sender, RoutedEventArgs e)
@@ -42,7 +43,7 @@ namespace Shop.Pages
             var order = DGOrders.SelectedItem as Order;
             if (order != null)
             {
-                order.WorkerId = currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault().Id;
+                order.WorkerId = currentWorker.Id;
                 NavigationService.Navigate(new OrderPage(order));
             }
             else

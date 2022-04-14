@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities2">
+  <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities3">
     <EntitySetMapping Name="BanSession">
       <EntityTypeMapping TypeName="SHOPModel.BanSession">
         <MappingFragment StoreEntitySet="BanSession">
@@ -54,7 +54,6 @@
     <EntitySetMapping Name="Product">
       <EntityTypeMapping TypeName="SHOPModel.Product">
         <MappingFragment StoreEntitySet="Product">
-          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Photo" ColumnName="Photo" />
           <ScalarProperty Name="Name" ColumnName="Name" />
@@ -62,6 +61,7 @@
           <ScalarProperty Name="UnitId" ColumnName="UnitId" />
           <ScalarProperty Name="AddDate" ColumnName="AddDate" />
           <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -171,7 +171,7 @@
       <EntityTypeMapping TypeName="SHOPModel.Worker">
         <MappingFragment StoreEntitySet="Worker">
           <ScalarProperty Name="Id" ColumnName="Id" />
-          <ScalarProperty Name="FIO" ColumnName="FIO" />
+          <ScalarProperty Name="FIO_Worker" ColumnName="FIO_Worker" />
           <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>

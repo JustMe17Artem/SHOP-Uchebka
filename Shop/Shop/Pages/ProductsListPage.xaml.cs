@@ -182,7 +182,8 @@ namespace Shop.Pages
         {
             if (currentUser.RoleId == 2)
             {
-                NavigationService.Navigate(new OrdersPage(currentUser));
+                Worker worker = currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault();
+                NavigationService.Navigate(new OrdersPage(worker));
             }
         }
     }

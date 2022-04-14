@@ -153,7 +153,7 @@ namespace Shop.DataBase
 
         public static ObservableCollection<Order> GetOrders()
         {
-            ObservableCollection<Order> orders = new ObservableCollection<Order>(DB_Connection.connection.Order.Where(o => o.StatusOrderId == 1));
+            ObservableCollection<Order> orders = new ObservableCollection<Order>(DB_Connection.connection.Order);
             return orders;
         }
 

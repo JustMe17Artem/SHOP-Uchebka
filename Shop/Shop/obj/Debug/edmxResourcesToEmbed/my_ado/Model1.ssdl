@@ -154,7 +154,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="FIO" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FIO_Worker" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="UserId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_Client_Gender">

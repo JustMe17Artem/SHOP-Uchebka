@@ -13,10 +13,10 @@ namespace Shop.my_ado
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SHOPEntities2 : DbContext
+    public partial class SHOPEntities3 : DbContext
     {
-        public SHOPEntities2()
-            : base("name=SHOPEntities2")
+        public SHOPEntities3()
+            : base("name=SHOPEntities3")
         {
         }
     

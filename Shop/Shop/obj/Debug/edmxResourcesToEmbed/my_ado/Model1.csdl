@@ -67,11 +67,11 @@
     <Property Name="UnitId" Type="Int32" Nullable="false" />
     <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="0" />
     <Property Name="Price" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
     <NavigationProperty Name="Unit" Relationship="Self.FK_Product_Unit" FromRole="Product" ToRole="Unit" />
     <NavigationProperty Name="ProductCountry" Relationship="Self.FK_ProductCountry_Product" FromRole="Product" ToRole="ProductCountry" />
     <NavigationProperty Name="ProductIntakeProduct" Relationship="Self.FK_ProductIntakeProduct_Product" FromRole="Product" ToRole="ProductIntakeProduct" />
     <NavigationProperty Name="ProductOrder" Relationship="Self.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
-    <Property Name="IsDeleted" Type="Boolean" />
   </EntityType>
   <EntityType Name="ProductCountry">
     <Key>
@@ -186,7 +186,7 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FIO_Worker" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Order" Relationship="Self.FK_Order_Worker" FromRole="Worker" ToRole="Order" />
     <NavigationProperty Name="User" Relationship="Self.FK_Worker_User" FromRole="Worker" ToRole="User" />
@@ -395,7 +395,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SHOPEntities2" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="SHOPEntities3" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="BanSession" EntityType="Self.BanSession" />
     <EntitySet Name="Client" EntityType="Self.Client" />
     <EntitySet Name="Country" EntityType="Self.Country" />

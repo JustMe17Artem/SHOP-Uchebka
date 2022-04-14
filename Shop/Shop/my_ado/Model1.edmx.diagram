@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e942d906e51144088ccc64dad7eac29d" Name="Diagram1" ZoomLevel="115">
+      <Diagram DiagramId="50b43b5235004a4dae0a29eddb4af03f" Name="Diagram1">
         <EntityTypeShape EntityType="SHOPModel.BanSession" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Client" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Country" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Gender" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Order" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SHOPModel.Product" Width="1.5" PointX="7.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHOPModel.Product" Width="1.5" PointX="7.5" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.ProductCountry" Width="1.5" PointX="9.75" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.ProductIntake" Width="1.5" PointX="12" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.ProductIntakeProduct" Width="1.5" PointX="14.25" PointY="10.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.ProductOrder" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Role" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SHOPModel.StatusIntake" Width="1.5" PointX="12" PointY="12.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHOPModel.StatusIntake" Width="1.5" PointX="12" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.StatusOrder" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Supplier" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />

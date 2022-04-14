@@ -21,7 +21,7 @@ namespace Shop.my_ado
         }
     
         public int Id { get; set; }
-        public string FIO { get; set; }
+        public string FIO_Worker { get; set; }
         public int UserId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

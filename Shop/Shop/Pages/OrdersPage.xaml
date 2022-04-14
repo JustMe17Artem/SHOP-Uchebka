@@ -67,9 +67,8 @@
                 <DataGridTextColumn Header="Заказчик" 
                                     Binding="{Binding Client.FIO}"/>
                 <DataGridTextColumn Header="Исполнитель"
-                                    Width="130"
-                                    Binding="{Binding Worker.FIO}"/>
-                
+                                    Binding="{Binding Worker.FIO_Worker}"/>
+
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

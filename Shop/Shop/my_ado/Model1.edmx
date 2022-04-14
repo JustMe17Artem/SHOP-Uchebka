@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="SHOPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="SHOPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BanSession">
           <Key>
             <PropertyRef Name="IdSession" />
@@ -159,7 +159,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FIO" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FIO_Worker" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="UserId" Type="int" Nullable="false" />
         </EntityType>
         <Association Name="FK_Client_Gender">
@@ -454,7 +454,8 @@
             <End Role="Worker" EntitySet="Worker" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SHOPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -525,11 +526,11 @@
           <Property Name="UnitId" Type="Int32" Nullable="false" />
           <Property Name="AddDate" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="Price" Type="Int32" />
+          <Property Name="IsDeleted" Type="Boolean" />
           <NavigationProperty Name="Unit" Relationship="Self.FK_Product_Unit" FromRole="Product" ToRole="Unit" />
           <NavigationProperty Name="ProductCountry" Relationship="Self.FK_ProductCountry_Product" FromRole="Product" ToRole="ProductCountry" />
           <NavigationProperty Name="ProductIntakeProduct" Relationship="Self.FK_ProductIntakeProduct_Product" FromRole="Product" ToRole="ProductIntakeProduct" />
           <NavigationProperty Name="ProductOrder" Relationship="Self.FK_ProductOrder_Product" FromRole="Product" ToRole="ProductOrder" />
-          <Property Name="IsDeleted" Type="Boolean" />
         </EntityType>
         <EntityType Name="ProductCountry">
           <Key>
@@ -644,7 +645,7 @@
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FIO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FIO_Worker" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_Worker" FromRole="Worker" ToRole="Order" />
           <NavigationProperty Name="User" Relationship="Self.FK_Worker_User" FromRole="Worker" ToRole="User" />
@@ -853,7 +854,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SHOPEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SHOPEntities3" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BanSession" EntityType="Self.BanSession" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Country" EntityType="Self.Country" />
@@ -946,7 +947,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities2">
+        <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities3">
           <EntitySetMapping Name="BanSession">
             <EntityTypeMapping TypeName="SHOPModel.BanSession">
               <MappingFragment StoreEntitySet="BanSession">
@@ -1000,7 +1001,6 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="SHOPModel.Product">
               <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Photo" ColumnName="Photo" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1008,6 +1008,7 @@
                 <ScalarProperty Name="UnitId" ColumnName="UnitId" />
                 <ScalarProperty Name="AddDate" ColumnName="AddDate" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1117,7 +1118,7 @@
             <EntityTypeMapping TypeName="SHOPModel.Worker">
               <MappingFragment StoreEntitySet="Worker">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="FIO_Worker" ColumnName="FIO_Worker" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
