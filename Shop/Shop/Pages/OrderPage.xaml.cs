@@ -23,11 +23,11 @@ namespace Shop.Pages
     /// </summary>
     public partial class OrderPage : Page
     {
-        private static User currentUser;
-        private List<Product> Products { get; set; }
-        private Order Order { get; set; }
-        private List<StatusOrder> StatusOrders { get; set; }
-        private List<ProductOrder> ProductOrders { get; set; }
+        public static User currentUser;
+        public List<Product> Products { get; set; }
+        public Order Order { get; set; }
+        public List<StatusOrder> StatusOrders { get; set; }
+        public List<ProductOrder> ProductOrders { get; set; }
         public OrderPage(User user)
         {
             InitializeComponent();
@@ -35,6 +35,7 @@ namespace Shop.Pages
             DPDate.SelectedDate = DateTime.Now.Date;
             Products = DataAccess.GetProducts().ToList();
             StatusOrders = DataAccess.GetStatusOrder().ToList();
+            //CBProduct.ItemsSource = Products;
             Order = new Order
             {
                 StatusOrder = StatusOrders[0]
@@ -63,9 +64,15 @@ namespace Shop.Pages
             {
                 Order.ProductOrder.Add(productOrder);
             }
-            DataAccess.AddOrder(Order, currentUser);
+            if (DGProducts.Items.Count != 0)
+            {
+                DataAccess.AddOrder(Order, currentUser);
+                MessageBox.Show("Заказ оформлен");
+                NavigationService.Navigate(new ProductsListPage(currentUser));
+            }
+            else
+                MessageBox.Show("Выберите продукты ждя заказа!");
         }
-
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             var product = CBProduct.SelectedItem as Product;
@@ -74,7 +81,7 @@ namespace Shop.Pages
                 Product = product,
                 ProductId = product.Id,
             });
-           
+
             DGProducts.Items.Refresh();
             Products.Remove(product);
         }
@@ -108,6 +115,13 @@ namespace Shop.Pages
                 (sender as DataGrid).RowEditEnding += DGProducts_RowEditEnding;
             }
             return;
+        }
+
+        private void BtnRemove_Click(object sender, RoutedEventArgs e)
+        {
+            var index = DGProducts.SelectedIndex;
+            ProductOrders.RemoveAt(index);
+            DGProducts.Items.Refresh();
         }
     }
 }

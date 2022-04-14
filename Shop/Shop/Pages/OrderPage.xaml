@@ -66,7 +66,14 @@
             
             <Button x:Name="BtnAdd"
                     Content="Добавить" 
-                    Click="BtnAdd_Click"/>
+                    Click="BtnAdd_Click"
+                    Margin="10,0,0,0"/>
+
+            <Button x:Name="BtnRemove"
+                    Content="Удалить" 
+                    Click="BtnRemove_Click"
+                    Margin="10,0,0,0"/>
+
         </StackPanel>
         
         <DataGrid Grid.Row="3"
@@ -74,7 +81,7 @@
                   Grid.Column="0"
                   Grid.ColumnSpan="4" 
                   CanUserDeleteRows="True"
-                  Height="500" 
+                  Height="260" 
                   AutoGenerateColumns="False"
                   SelectionChanged="DGProducts_SelectionChanged"
                   ItemsSource="{Binding ProductOrders, Mode=TwoWay}" CanUserSortColumns="False"
