@@ -23,7 +23,21 @@
         </Grid.RowDefinitions>
         <Button x:Name="BtnCreate" 
                 Content="Создать заказ" 
-                Click="BtnCreate_Click"/>
+                Click="BtnCreate_Click"
+                Grid.Column="2"
+                Margin="90,0,0,0"
+                Grid.Row="4"
+                HorizontalAlignment="Left"
+                Width="100"/>
+        
+        <Button x:Name="Btnback" 
+                Content="Назад" 
+                Click="Btnback_Click"
+                Grid.Column="0"
+                Grid.Row="4"
+                Height="30"
+                HorizontalAlignment="Left"
+                Width="70"/>
         
         <TextBlock Text="Дата" 
                    Grid.Row="1"
@@ -38,9 +52,15 @@
                     VerticalAlignment="Center"
                     HorizontalAlignment="Center"/>
 
-        <StackPanel Grid.Column="2" Grid.Row="1">
+
+        <StackPanel Orientation="Horizontal" 
+                    Grid.Column="1"
+                    Grid.ColumnSpan="5"
+                    Grid.Row="2">
             <ComboBox x:Name="CBStatus"
                       Width="100"
+                      FontSize="10"
+                      Margin="10,10,10,10"
                       ItemsSource="{Binding StatusOrders}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
@@ -48,13 +68,9 @@
                     </DataTemplate>
                 </ComboBox.ItemTemplate>
             </ComboBox>
-        </StackPanel>
-
-        <StackPanel Orientation="Horizontal" 
-                    Grid.Column="2"
-                    Grid.Row="2">
             <ComboBox x:Name="CBProduct" 
                       Width="100"
+                      Margin="10,10,10,10"
                       ItemsSource="{Binding Products, Mode=TwoWay}"
                       SelectedIndex="0">
                 <ComboBox.ItemTemplate>
@@ -72,6 +88,16 @@
             <Button x:Name="BtnRemove"
                     Content="Удалить" 
                     Click="BtnRemove_Click"
+                    Margin="10,0,0,0"/>
+
+            <Button x:Name="BtnAccept"
+                    Content="Принять заказ" 
+                    Click="BtnAccept_Click"
+                    Margin="10,0,0,0"/>
+
+            <Button x:Name="BtnDecline"
+                    Content="Отклонить заказ" 
+                    Click="BtnDecline_Click"
                     Margin="10,0,0,0"/>
 
         </StackPanel>

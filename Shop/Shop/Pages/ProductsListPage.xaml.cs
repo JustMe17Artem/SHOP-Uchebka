@@ -33,9 +33,11 @@ namespace Shop.Pages
             LVProducts.ItemsSource = products;
             DataContext = this;
             currentUser = user;
+            TBlFio.Text = currentUser.Login;
             if (user.RoleId == 3)
             {
                 BtnAdd.Visibility = Visibility.Hidden;
+                BtnOrders.Visibility = Visibility.Hidden;
             }
             var allUnits = new ObservableCollection<Unit>(DB_Connection.connection.Unit.ToList());
             allUnits.Insert(0, new Unit() { Id = -1, Name = "Все" });
@@ -173,6 +175,14 @@ namespace Shop.Pages
             if(currentUser.RoleId == 3)
             {
                 NavigationService.Navigate(new OrderPage(currentUser));
+            }
+        }
+
+        private void BtnOrders_Click(object sender, RoutedEventArgs e)
+        {
+            if (currentUser.RoleId == 2)
+            {
+                NavigationService.Navigate(new OrdersPage(currentUser));
             }
         }
     }

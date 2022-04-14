@@ -26,6 +26,16 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
+
+            <TextBlock 
+                x:Name="TBlFio"
+                FontSize="15"
+                Foreground="Black"
+                Grid.Column="1"
+                Grid.ColumnSpan="2"
+                TextAlignment="Center"
+                Grid.Row="1"/>
+
             <ComboBox  Width="100"
                        Margin="80,0,0,0" 
                        Name="SortCount"
@@ -45,23 +55,38 @@
             <TextBox x:Name="TBSearch"
                      Grid.Row="0" 
                      Grid.Column="1" 
-                     Margin="40,0,0,0"
+                     Margin="-70,0,0,0"
                      Grid.ColumnSpan="2"
                      Height="30" 
+                     Width="250"
                      VerticalAlignment="Center" 
                      SelectionChanged="TBSearch_SelectionChanged"/>
-            
+
             <Button x:Name="BtnAdd"
                     Content="Новый продукт" 
                     Foreground="Black"
                     Grid.Column="3"
                     Background="#FF553026"
                     Grid.Row="0"
-                    Height="55"
+                    Height="40"
+                    Margin="10,10,10,10"
                     Visibility="Visible"
                     Click="BtnAdd_Click" 
                     HorizontalAlignment="Right"
-                    Width="100"/>
+                    Width="90"/>
+
+            <Button x:Name="BtnOrders"
+                    Content="Заказы" 
+                    Foreground="Black"
+                    Grid.Column="2"
+                    Background="#FF553026"
+                    Grid.Row="0"
+                    Height="40"
+                    Margin="0,9,10,10"
+                    Visibility="Visible"
+                    Click="BtnOrders_Click" 
+                    HorizontalAlignment="Right"
+                    Width="90"/>
 
             <Button x:Name="BtnOrder"
                     Content="Заказать" 
@@ -69,18 +94,19 @@
                     Grid.Column="3"
                     Background="#FF553026"
                     Grid.Row="0"
-                    Height="55"
+                    Height="40"
+                     Margin="10,10,10,10"
                     Visibility="Visible"
                     Click="BtnOrder_Click" 
                     HorizontalAlignment="Left"
-                    Width="100"/>
+                    Width="70"/>
 
 
             <ListView x:Name="LVProducts" ItemsSource="{Binding products}" 
                       Grid.Column="0"
                       Grid.ColumnSpan="4" 
-                      Grid.Row="1" 
-                      Grid.RowSpan="6"
+                      Grid.Row="2" 
+                      Grid.RowSpan="5"
                       SelectionChanged="LVProducts_SelectionChanged">
                 <ListView.View>
                     <GridView>
@@ -145,7 +171,7 @@
                        Grid.Column="1"
                        VerticalAlignment="Top"
                        HorizontalAlignment="Center"/>
-            
+
             <ComboBox Name="CBAlphabet"
                       Grid.Column="1"
                       Grid.Row="7" 

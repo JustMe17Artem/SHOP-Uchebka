@@ -35,13 +35,14 @@ namespace Shop.Pages
             DPDate.SelectedDate = DateTime.Now.Date;
             Products = DataAccess.GetProducts().ToList();
             StatusOrders = DataAccess.GetStatusOrder().ToList();
-            //CBProduct.ItemsSource = Products;
             Order = new Order
             {
                 StatusOrder = StatusOrders[0]
             };
             ProductOrders = Order.ProductOrder.ToList();
             CBStatus.SelectedItem = Order.StatusOrder;
+            BtnDecline.Visibility = Visibility.Hidden;
+            BtnAccept.Visibility = Visibility.Hidden;
             DGProducts.SelectionMode = DataGridSelectionMode.Extended;
             DataContext = this;
         }
@@ -49,13 +50,20 @@ namespace Shop.Pages
         {
             InitializeComponent();
             Order = order;
-            Products = DataAccess.GetProducts().ToList();
-            DPDate.SelectedDate = DateTime.Now;
+            CBProduct.Visibility = Visibility.Hidden;
+            DPDate.SelectedDate = Order.Date;
+            ProductOrders = Order.ProductOrder.ToList();
             StatusOrders = DataAccess.GetStatusOrder().ToList();
+            BtnDecline.Visibility = Visibility.Visible;
+            BtnAccept.Visibility = Visibility.Visible;
+            BtnAdd.Visibility = Visibility.Hidden;
+            BtnRemove.Visibility = Visibility.Hidden;
             CBStatus.SelectedItem = Order.StatusOrder;
-            DGProducts.SelectionMode = DataGridSelectionMode.Extended;
+            DGProducts.ItemsSource = ProductOrders;
+            Order.StatusOrderId = 3;
+            DB_Connection.connection.SaveChanges();
+            BtnCreate.Visibility = Visibility.Hidden;
             DataContext = this;
-            SetEnable();
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
@@ -71,7 +79,7 @@ namespace Shop.Pages
                 NavigationService.Navigate(new ProductsListPage(currentUser));
             }
             else
-                MessageBox.Show("Выберите продукты ждя заказа!");
+                MessageBox.Show("Выберите продукты для заказа!");
         }
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -122,6 +130,27 @@ namespace Shop.Pages
             var index = DGProducts.SelectedIndex;
             ProductOrders.RemoveAt(index);
             DGProducts.Items.Refresh();
+        }
+
+        private void BtnAccept_Click(object sender, RoutedEventArgs e)
+        {
+            Order.StatusOrderId = 2;
+            DB_Connection.connection.SaveChanges();
+            MessageBox.Show("Заказ принят");
+            NavigationService.GoBack();
+        }
+
+        private void BtnDecline_Click(object sender, RoutedEventArgs e)
+        {
+            Order.StatusOrderId = 5;
+            DB_Connection.connection.SaveChanges();
+            MessageBox.Show("Заказ отклонён");
+            NavigationService.GoBack();
+        }
+
+        private void Btnback_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }
