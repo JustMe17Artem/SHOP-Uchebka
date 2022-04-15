@@ -84,14 +84,9 @@ namespace Shop.Pages
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             var product = CBProduct.SelectedItem as Product;
-            ProductOrders.Add(new ProductOrder
-            {
-                Product = product,
-                ProductId = product.Id,
-            });
-
-            DGProducts.Items.Refresh();
+            ProductOrders.Add(new ProductOrder { Product = product, ProductId = product.Id});
             Products.Remove(product);
+            DGProducts.Items.Refresh();
         }
 
         private void DGProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -111,20 +106,25 @@ namespace Shop.Pages
             if (this.DGProducts.SelectedItem != null)
             {
                 (sender as DataGrid).RowEditEnding -= DGProducts_RowEditEnding;
+                //(gridProducts.SelectedItem as IntakeProduct).ProductId = (gridProducts.SelectedItem as IntakeProduct).Product.Id;
                 (sender as DataGrid).CommitEdit();
                 (sender as DataGrid).Items.Refresh();
 
-                double sum = 0;
-                foreach (Product product in DGProducts.ItemsSource)
+                decimal sum = 0;
+                foreach (ProductOrder product in DGProducts.ItemsSource)
                 {
-                    sum += Convert.ToInt32(product.Price);
+                    sum += product.Sum;
                 }
                 TBSum.Text = sum.ToString();
                 (sender as DataGrid).RowEditEnding += DGProducts_RowEditEnding;
+                
             }
-            return;
-        }
 
+            //ComboBox ele = gridProducts.Columns[0].GetCellContent(gridProducts.Items[0]) as ComboBox;
+            return;
+
+
+        }
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {
             var index = DGProducts.SelectedIndex;

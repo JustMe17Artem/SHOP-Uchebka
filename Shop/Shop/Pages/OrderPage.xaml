@@ -110,24 +110,17 @@
                   Height="260" 
                   AutoGenerateColumns="False"
                   SelectionChanged="DGProducts_SelectionChanged"
-                  ItemsSource="{Binding ProductOrders, Mode=TwoWay}" CanUserSortColumns="False"
-                  CanUserAddRows="False">
-            
+                  ItemsSource="{Binding ProductOrders, Mode=TwoWay}"
+                  CanUserSortColumns="False"
+                  CanUserAddRows="False"
+                  RowEditEnding="DGProducts_RowEditEnding">
+
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="clProduct"
-                                    Header="Товар"
-                                    Binding="{Binding Product.Name, Mode=OneWay}" />
-                <DataGridTextColumn x:Name="clPrice"
-                                     Binding="{Binding Product.Price, Mode=TwoWay}"
-                                    Header="Цена"/>
-                <DataGridTextColumn x:Name="clCount" 
-                                    Header="Количество" 
-                                    Binding="{Binding Count}" />
-                <DataGridTextColumn x:Name="clSum" 
-                                    Binding="{Binding Sum, Mode=OneWay}"
-                                    Header="Сумма"/>
+                <DataGridTextColumn x:Name="clProduct" Header="Товар" Binding="{Binding Product.Name, Mode=OneWay}" />
+                <DataGridTextColumn x:Name="clPrice" Header="Цена" Binding="{Binding Product.Price, Mode=TwoWay}" />
+                <DataGridTextColumn x:Name="clCount" Header="Количество" Binding="{Binding Count}"/>
+                <DataGridTextColumn x:Name="clSum" Header="Сумма" Binding="{Binding Sum, Mode=OneWay}"/>
             </DataGrid.Columns>
-            
         </DataGrid>
         <StackPanel Orientation="Horizontal"
                     Grid.Row="4"
