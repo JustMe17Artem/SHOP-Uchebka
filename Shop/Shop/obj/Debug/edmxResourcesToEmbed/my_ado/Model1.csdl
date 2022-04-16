@@ -395,7 +395,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="SHOPEntities3" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="SHOPEntities4" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="BanSession" EntityType="Self.BanSession" />
     <EntitySet Name="Client" EntityType="Self.Client" />
     <EntitySet Name="Country" EntityType="Self.Country" />

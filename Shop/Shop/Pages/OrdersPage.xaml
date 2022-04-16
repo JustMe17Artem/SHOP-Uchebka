@@ -23,13 +23,13 @@
             <RowDefinition Height="0.5*"/>
         </Grid.RowDefinitions>
         
-        <Button x:Name="BtnCreate"
+        <!--<Button x:Name="BtnCreate"
                 Content="Новый заказ" 
                 Click="BtnCreate_Click" 
                 Grid.Column="1" 
                 Grid.Row="3"
                 Margin="0,10,-0,0"
-                HorizontalAlignment="Center"/>
+                HorizontalAlignment="Center"/>-->
         
         <Button x:Name="BtnOpen" 
                 Content="Посмотреть"
@@ -55,18 +55,20 @@
                   AutoGenerateColumns="False" IsReadOnly="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер заказа" 
+                                    x:Name="CLnumber"
                                     Binding="{Binding Id}"/>
                 <DataGridTextColumn Header="Дата"
                                     Width="100"
                                     Binding="{Binding Date}"/>
                 <DataGridTextColumn Header="Кол-во товаров" 
-                                    Binding="{Binding ProductOrders.Count}"/>
+                                    Binding="{Binding ProductOrder.Count}"/>
                 <DataGridTextColumn Header="Этап"
                                     Width="70"
                                     Binding="{Binding StatusOrder.Name}"/>
                 <DataGridTextColumn Header="Заказчик" 
                                     Binding="{Binding Client.FIO}"/>
                 <DataGridTextColumn Header="Исполнитель"
+                                    x:Name="CLWorker"
                                     Binding="{Binding Worker.FIO_Worker}"/>
 
             </DataGrid.Columns>

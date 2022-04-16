@@ -23,19 +23,31 @@ namespace Shop.Pages
     /// </summary>
     public partial class OrdersPage : Page
     {
-        private Worker currentWorker;
-        public OrdersPage(Worker worker)
+        
+
+        public static User currentUser;
+
+        public OrdersPage(User user)
         {
             InitializeComponent();
-            currentWorker = worker;
-            DGOrders.ItemsSource = DataAccess.GetOrders().Where(o => o.StatusOrderId == 1 || o.WorkerId == worker.Id );
+            currentUser = user;
+            if(user.RoleId == 1)
+            {
+                DGOrders.ItemsSource = DataAccess.GetOrders().Where(o => o.StatusOrderId == 1 || o.WorkerId == currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault().Id);
+            }
+            else if(user.RoleId == 3)
+            {
+                CLnumber.Visibility = Visibility.Hidden;
+                CLWorker.Visibility = Visibility.Hidden;
+                DGOrders.ItemsSource = DataAccess.GetOrders().Where(o=> o.ClientId == user.Client.FirstOrDefault().Id);
+            }
+            
             DataContext = this;
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
         {
-            User user = currentWorker.User;
-            NavigationService.Navigate(new OrderPage(user));
+            NavigationService.Navigate(new OrderPage(currentUser));
         }
 
         private void BtnOpen_Click(object sender, RoutedEventArgs e)
@@ -43,10 +55,18 @@ namespace Shop.Pages
             var order = DGOrders.SelectedItem as Order;
             if (order != null)
             {
-                order.StatusOrderId = 3;
-                order.WorkerId = currentWorker.Id;
-                DB_Connection.connection.SaveChanges();
-                NavigationService.Navigate(new OrderPage(order, currentWorker));
+                if(currentUser.RoleId == 1)
+                {
+                    order.StatusOrderId = 3;
+                    order.WorkerId = currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault().Id;
+                    DB_Connection.connection.SaveChanges();
+                    NavigationService.Navigate(new OrderPage(order, currentUser));
+                }
+                else
+                {
+                    NavigationService.Navigate(new OrderPage(order, currentUser));
+                }
+                
             }
             else
                 MessageBox.Show("Заказ не выбран");
@@ -54,7 +74,7 @@ namespace Shop.Pages
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.GoBack();
+            NavigationService.Navigate(new ProductsListPage(currentUser));
         }
     }
 }

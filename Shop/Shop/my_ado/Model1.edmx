@@ -854,7 +854,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SHOPEntities3" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="SHOPEntities4" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="BanSession" EntityType="Self.BanSession" />
           <EntitySet Name="Client" EntityType="Self.Client" />
           <EntitySet Name="Country" EntityType="Self.Country" />
@@ -947,7 +947,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities3">
+        <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities4">
           <EntitySetMapping Name="BanSession">
             <EntityTypeMapping TypeName="SHOPModel.BanSession">
               <MappingFragment StoreEntitySet="BanSession">

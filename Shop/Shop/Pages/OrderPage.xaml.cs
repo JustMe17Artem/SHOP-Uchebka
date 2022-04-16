@@ -24,7 +24,8 @@ namespace Shop.Pages
     public partial class OrderPage : Page
     {
         public static User currentUser;
-        public static Worker currentWorker;
+
+        public static Client currentClient;
         public List<Product> Products { get; set; }
         public Order Order { get; set; }
         public List<StatusOrder> StatusOrders { get; set; }
@@ -33,6 +34,7 @@ namespace Shop.Pages
         {
             InitializeComponent();
             currentUser = user;
+            currentClient = user.Client.Where(c => c.UserId == user.Id).FirstOrDefault();
             DPDate.SelectedDate = DateTime.Now.Date;
             Products = DataAccess.GetProducts().ToList();
             StatusOrders = DataAccess.GetStatusOrder().ToList();
@@ -47,22 +49,47 @@ namespace Shop.Pages
             DGProducts.SelectionMode = DataGridSelectionMode.Extended;
             DataContext = this;
         }
-        public OrderPage(Order order, Worker worker)
+        public OrderPage(Order order, User user)
         {
             InitializeComponent();
             Order = order;
-            clPrice.IsReadOnly = true;
-            currentWorker = worker;
-            CBProduct.Visibility = Visibility.Hidden;
+            clCount.IsReadOnly = true;
+            currentUser = user;
+
+            if (user.RoleId == 1)
+            {
+                CBProduct.Visibility = Visibility.Hidden;
+                CBStatus.Visibility = Visibility.Hidden;
+                BtnAdd.Visibility = Visibility.Hidden;
+                BtnRemove.Visibility = Visibility.Hidden;
+                BtnDecline.Visibility = Visibility.Visible;
+                BtnAccept.Visibility = Visibility.Visible;
+                DPDate.IsEnabled = false;
+            }
+
+            else if (user.RoleId == 3)
+            {
+                DPDate.IsEnabled = false;
+                CBProduct.Visibility = Visibility.Hidden;
+                BtnAdd.Visibility = Visibility.Hidden;
+                CBStatus.Visibility = Visibility.Hidden;
+                BtnRemove.Visibility = Visibility.Hidden;
+                BtnDecline.Visibility = Visibility.Hidden;
+                BtnAccept.Visibility = Visibility.Hidden;
+            }
             DPDate.SelectedDate = Order.Date;
             ProductOrders = Order.ProductOrder.ToList();
             StatusOrders = DataAccess.GetStatusOrder().ToList();
-            BtnDecline.Visibility = Visibility.Visible;
-            BtnAccept.Visibility = Visibility.Visible;
-            BtnAdd.Visibility = Visibility.Hidden;
-            BtnRemove.Visibility = Visibility.Hidden;
+           
+            
             CBStatus.SelectedItem = Order.StatusOrder;
             DGProducts.ItemsSource = ProductOrders;
+            decimal sum = 0;
+            foreach (ProductOrder productOrder in ProductOrders)
+            {
+                sum += productOrder.Sum;
+            }
+            TBSum.Text = sum.ToString();
             Order.StatusOrderId = 3;
             DB_Connection.connection.SaveChanges();
             BtnCreate.Visibility = Visibility.Hidden;
@@ -77,7 +104,8 @@ namespace Shop.Pages
             }
             if (DGProducts.Items.Count != 0)
             {
-                DataAccess.AddOrder(Order, currentUser);
+                int sum = Int32.Parse(TBSum.Text);
+                DataAccess.AddOrder(Order, currentClient);
                 MessageBox.Show("Заказ оформлен");
                 NavigationService.Navigate(new ProductsListPage(currentUser));
             }
@@ -148,7 +176,7 @@ namespace Shop.Pages
 
         private void Btnback_Click(object sender, RoutedEventArgs e)
         { 
-            NavigationService.Navigate(new OrdersPage(currentWorker));
+            NavigationService.Navigate(new OrdersPage(currentUser));
         }
     }
 }

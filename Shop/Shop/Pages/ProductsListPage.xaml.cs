@@ -42,12 +42,14 @@ namespace Shop.Pages
             else if(user.RoleId == 1)
             {
                 BtnOrder.Visibility = Visibility.Hidden;
+                BtnMyOrders.Visibility = Visibility.Hidden;
             }
             else if(user.RoleId == 2)
             {
                 BtnOrders.Visibility = Visibility.Hidden;
                 BtnAdd.Visibility = Visibility.Hidden;
                 BtnAdd.Visibility = Visibility.Hidden;
+                BtnMyOrders.Visibility = Visibility.Hidden;
             }
             var allUnits = new ObservableCollection<Unit>(DB_Connection.connection.Unit.ToList());
             allUnits.Insert(0, new Unit() { Id = -1, Name = "Все" });
@@ -119,7 +121,7 @@ namespace Shop.Pages
 
         private void LVProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (currentUser.RoleId != 3 )
+            if (currentUser.RoleId != 3)
             {
                 var selectedProduct = LVProducts.SelectedItem as Product;
                 NavigationService.Navigate(new ProductEditPage(selectedProduct));
@@ -182,19 +184,17 @@ namespace Shop.Pages
 
         private void BtnOrder_Click(object sender, RoutedEventArgs e)
         {
-            if(currentUser.RoleId == 3)
-            {
-                NavigationService.Navigate(new OrderPage(currentUser));
-            }
+            NavigationService.Navigate(new OrderPage(currentUser));
         }
 
         private void BtnOrders_Click(object sender, RoutedEventArgs e)
+        { 
+            NavigationService.Navigate(new OrdersPage(currentUser));
+        }
+
+        private void BtnMyOrders_Click(object sender, RoutedEventArgs e)
         {
-            if (currentUser.RoleId == 1)
-            {
-                Worker worker = currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault();
-                NavigationService.Navigate(new OrdersPage(worker));
-            }
+            NavigationService.Navigate(new OrdersPage(currentUser));
         }
     }
 }
