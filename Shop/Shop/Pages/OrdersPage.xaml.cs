@@ -28,7 +28,7 @@ namespace Shop.Pages
         {
             InitializeComponent();
             currentWorker = worker;
-            DGOrders.ItemsSource = DataAccess.GetOrders();
+            DGOrders.ItemsSource = DataAccess.GetOrders().Where(o => o.StatusOrderId == 1 || o.WorkerId == worker.Id );
             DataContext = this;
         }
 
@@ -43,8 +43,10 @@ namespace Shop.Pages
             var order = DGOrders.SelectedItem as Order;
             if (order != null)
             {
+                order.StatusOrderId = 3;
                 order.WorkerId = currentWorker.Id;
-                NavigationService.Navigate(new OrderPage(order));
+                DB_Connection.connection.SaveChanges();
+                NavigationService.Navigate(new OrderPage(order, currentWorker));
             }
             else
                 MessageBox.Show("Заказ не выбран");

@@ -36,8 +36,18 @@ namespace Shop.Pages
             TBlFio.Text = currentUser.Login;
             if (user.RoleId == 3)
             {
-                BtnAdd.Visibility = Visibility.Hidden;
                 BtnOrders.Visibility = Visibility.Hidden;
+                BtnAdd.Visibility = Visibility.Hidden;
+            }
+            else if(user.RoleId == 1)
+            {
+                BtnOrder.Visibility = Visibility.Hidden;
+            }
+            else if(user.RoleId == 2)
+            {
+                BtnOrders.Visibility = Visibility.Hidden;
+                BtnAdd.Visibility = Visibility.Hidden;
+                BtnAdd.Visibility = Visibility.Hidden;
             }
             var allUnits = new ObservableCollection<Unit>(DB_Connection.connection.Unit.ToList());
             allUnits.Insert(0, new Unit() { Id = -1, Name = "Все" });
@@ -180,7 +190,7 @@ namespace Shop.Pages
 
         private void BtnOrders_Click(object sender, RoutedEventArgs e)
         {
-            if (currentUser.RoleId == 2)
+            if (currentUser.RoleId == 1)
             {
                 Worker worker = currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault();
                 NavigationService.Navigate(new OrdersPage(worker));

@@ -24,6 +24,7 @@ namespace Shop.Pages
     public partial class OrderPage : Page
     {
         public static User currentUser;
+        public static Worker currentWorker;
         public List<Product> Products { get; set; }
         public Order Order { get; set; }
         public List<StatusOrder> StatusOrders { get; set; }
@@ -46,10 +47,12 @@ namespace Shop.Pages
             DGProducts.SelectionMode = DataGridSelectionMode.Extended;
             DataContext = this;
         }
-        public OrderPage(Order order)
+        public OrderPage(Order order, Worker worker)
         {
             InitializeComponent();
             Order = order;
+            clPrice.IsReadOnly = true;
+            currentWorker = worker;
             CBProduct.Visibility = Visibility.Hidden;
             DPDate.SelectedDate = Order.Date;
             ProductOrders = Order.ProductOrder.ToList();
@@ -106,7 +109,6 @@ namespace Shop.Pages
             if (this.DGProducts.SelectedItem != null)
             {
                 (sender as DataGrid).RowEditEnding -= DGProducts_RowEditEnding;
-                //(gridProducts.SelectedItem as IntakeProduct).ProductId = (gridProducts.SelectedItem as IntakeProduct).Product.Id;
                 (sender as DataGrid).CommitEdit();
                 (sender as DataGrid).Items.Refresh();
 
@@ -119,11 +121,7 @@ namespace Shop.Pages
                 (sender as DataGrid).RowEditEnding += DGProducts_RowEditEnding;
                 
             }
-
-            //ComboBox ele = gridProducts.Columns[0].GetCellContent(gridProducts.Items[0]) as ComboBox;
             return;
-
-
         }
         private void BtnRemove_Click(object sender, RoutedEventArgs e)
         {
@@ -149,8 +147,8 @@ namespace Shop.Pages
         }
 
         private void Btnback_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
+        { 
+            NavigationService.Navigate(new OrdersPage(currentWorker));
         }
     }
 }

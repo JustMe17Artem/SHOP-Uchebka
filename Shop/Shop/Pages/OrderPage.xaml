@@ -116,10 +116,10 @@
                   RowEditEnding="DGProducts_RowEditEnding">
 
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="clProduct" Header="Товар" Binding="{Binding Product.Name, Mode=OneWay}" />
-                <DataGridTextColumn x:Name="clPrice" Header="Цена" Binding="{Binding Product.Price, Mode=TwoWay}" />
+                <DataGridTextColumn x:Name="clProduct" IsReadOnly="True" Header="Товар" Binding="{Binding Product.Name, Mode=OneWay}" />
+                <DataGridTextColumn x:Name="clPrice" IsReadOnly="True" Header="Цена" Binding="{Binding Product.Price, Mode=TwoWay}" />
                 <DataGridTextColumn x:Name="clCount" Header="Количество" Binding="{Binding Count}"/>
-                <DataGridTextColumn x:Name="clSum" Header="Сумма" Binding="{Binding Sum, Mode=OneWay}"/>
+                <DataGridTextColumn x:Name="clSum" IsReadOnly="True" Header="Сумма" Binding="{Binding Sum, Mode=OneWay}"/>
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Orientation="Horizontal"

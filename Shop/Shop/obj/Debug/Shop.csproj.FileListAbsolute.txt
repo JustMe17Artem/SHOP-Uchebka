@@ -33,3 +33,4 @@ C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\OrderPage.g
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\OrderPage.baml
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\OrdersPage.g.cs
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Pages\OrdersPage.baml
+C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\obj\Debug\Shop.csproj.AssemblyReference.cache
