@@ -23,10 +23,7 @@ namespace Shop.Pages
     /// </summary>
     public partial class OrdersPage : Page
     {
-        
-
         public static User currentUser;
-
         public OrdersPage(User user)
         {
             InitializeComponent();
@@ -62,7 +59,7 @@ namespace Shop.Pages
                     DB_Connection.connection.SaveChanges();
                     NavigationService.Navigate(new OrderPage(order, currentUser));
                 }
-                else
+                else if(currentUser.RoleId == 3)
                 {
                     NavigationService.Navigate(new OrderPage(order, currentUser));
                 }

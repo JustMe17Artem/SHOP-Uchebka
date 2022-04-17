@@ -129,6 +129,8 @@ namespace Shop.DataBase
                 return false;
             }
         }
+
+
         public static bool AddOrder(Order order, Client user)
         {
             if (GetOrders().Where(o => o.Id == order.Id).Count() == 0)
@@ -197,6 +199,9 @@ namespace Shop.DataBase
             var currentUser = users.Where(u => u.Id == idUser).FirstOrDefault();
             return currentUser;
         }
+
+     
+
         public static User GetUser(string login, string password)
         {
             ObservableCollection<User> users = new ObservableCollection<User>(DB_Connection.connection.User);
