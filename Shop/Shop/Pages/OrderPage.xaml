@@ -135,7 +135,9 @@
                     VerticalAlignment="Center"
                     Grid.Column="1">
             <TextBlock Text="Сумма"
-                       FontSize="13"/>
+                       FontSize="13"
+                       x:Name="Ex"/>
+            
             <TextBox x:Name="TBSum"
                      Width="80"
                      Margin="10,0,0,0"

@@ -62,6 +62,7 @@ namespace Shop.Pages
                 Intake.Data = (DateTime)DPDate.SelectedDate;
                 Intake.ProductIntakeProduct = IntakeProducts;
                 Intake.StatusIntakeId = 1;
+                
                 DataAccess.SaveProductIntake(Intake);
             }
             else

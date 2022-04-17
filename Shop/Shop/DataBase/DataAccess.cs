@@ -145,13 +145,13 @@ namespace Shop.DataBase
             DB_Connection.connection.SaveChanges();
         }
 
-        public static bool AddOrder(Order order, Client user)
+        public static bool AddOrder(Order order, Client client)
         {
             if (GetOrders().Where(o => o.Id == order.Id).Count() == 0)
             {
                 order.Date = DateTime.Now.Date;
                 order.StatusOrderId = 1;
-                order.ClientId = user.Id;
+                order.ClientId = client.Id;
                 DB_Connection.connection.Order.Add(order);
                 DB_Connection.connection.SaveChanges();
             }

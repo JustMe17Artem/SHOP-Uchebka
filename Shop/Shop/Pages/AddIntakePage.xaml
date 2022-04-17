@@ -111,7 +111,7 @@
                 <DataGridTextColumn x:Name="CLPrice"
                                     Header="Цена"
                                     Binding="{Binding Product.Price, Mode=TwoWay}"/>
-                
+
                 <DataGridTextColumn x:Name="CLCount"
                                     Header="Количество"
                                     Binding="{Binding Count}"/>
