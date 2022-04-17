@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities4">
+  <EntityContainerMapping StorageEntityContainer="SHOPModelStoreContainer" CdmEntityContainer="SHOPEntities5">
     <EntitySetMapping Name="BanSession">
       <EntityTypeMapping TypeName="SHOPModel.BanSession">
         <MappingFragment StoreEntitySet="BanSession">
@@ -81,6 +81,7 @@
           <ScalarProperty Name="SupplierId" ColumnName="SupplierId" />
           <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
           <ScalarProperty Name="Data" ColumnName="Data" />
+          <ScalarProperty Name="StatusIntakeId" ColumnName="StatusIntakeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -92,7 +93,6 @@
           <ScalarProperty Name="ProductIntakeId" ColumnName="ProductIntakeId" />
           <ScalarProperty Name="Count" ColumnName="Count" />
           <ScalarProperty Name="PriceUnit" ColumnName="PriceUnit" />
-          <ScalarProperty Name="StatusIntakeId" ColumnName="StatusIntakeId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

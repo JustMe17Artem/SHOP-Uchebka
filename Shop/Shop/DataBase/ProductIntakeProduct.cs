@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Shop.my_ado
 {
-   public partial class ProductOrder
-   {
-       public decimal Sum => Count * (int)Product.Price;
-   }
+    public partial class ProductIntakeProduct
+    {
+        public decimal Sum => Count * (int)Product.Price;
+    }
 }

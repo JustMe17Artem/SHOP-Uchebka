@@ -130,6 +130,20 @@ namespace Shop.DataBase
             }
         }
 
+        public static ObservableCollection<ProductIntake> GetProductIntakes()
+        {
+            return new ObservableCollection<ProductIntake>(DB_Connection.connection.ProductIntake);
+        }
+
+        public static void SaveProductIntake(ProductIntake productIntake)
+        {
+            if (GetProductIntakes().Where(p => p.Id == productIntake.Id).Count() == 0)
+                DB_Connection.connection.ProductIntake.Add(productIntake);
+            else
+                DB_Connection.connection.ProductIntake.SingleOrDefault(p => p.Id == productIntake.Id);
+
+            DB_Connection.connection.SaveChanges();
+        }
 
         public static bool AddOrder(Order order, Client user)
         {

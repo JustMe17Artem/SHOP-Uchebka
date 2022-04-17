@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3d4dccd62784477fb6973eff01c86a27" Name="Diagram1">
+      <Diagram DiagramId="93da284c309f4ae2a71a61e4a9818447" Name="Diagram1">
         <EntityTypeShape EntityType="SHOPModel.BanSession" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Client" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Country" Width="1.5" PointX="7.5" PointY="16.625" IsExpanded="true" />
@@ -12,14 +12,14 @@
         <EntityTypeShape EntityType="SHOPModel.Order" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Product" Width="1.5" PointX="7.5" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.ProductCountry" Width="1.5" PointX="9.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SHOPModel.ProductIntake" Width="1.5" PointX="12" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SHOPModel.ProductIntakeProduct" Width="1.5" PointX="14.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHOPModel.ProductIntake" Width="1.5" PointX="12" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHOPModel.ProductIntakeProduct" Width="1.5" PointX="14.25" PointY="7.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.ProductOrder" Width="1.5" PointX="9.75" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Role" Width="1.5" PointX="0.75" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SHOPModel.StatusIntake" Width="1.5" PointX="12" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHOPModel.StatusIntake" Width="1.5" PointX="9.75" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.StatusOrder" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SHOPModel.Supplier" Width="1.5" PointX="9.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SHOPModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHOPModel.Supplier" Width="1.5" PointX="9.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SHOPModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Unit" Width="1.5" PointX="5.25" PointY="12.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.User" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SHOPModel.Worker" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
@@ -35,9 +35,9 @@
         <AssociationConnector Association="SHOPModel.FK_ProductCountry_Product" ManuallyRouted="false" />
         <AssociationConnector Association="SHOPModel.FK_ProductIntakeProduct_Product" ManuallyRouted="false" />
         <AssociationConnector Association="SHOPModel.FK_ProductOrder_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="SHOPModel.FK_ProductIntake_StatusIntake" ManuallyRouted="false" />
         <AssociationConnector Association="SHOPModel.FK_ProductIntake_Supplier" ManuallyRouted="false" />
         <AssociationConnector Association="SHOPModel.FK_ProductIntakeProduct_ProductIntake" ManuallyRouted="false" />
-        <AssociationConnector Association="SHOPModel.FK_ProductIntakeProduct_StatusIntake" ManuallyRouted="false" />
         <AssociationConnector Association="SHOPModel.FK_User_Role" ManuallyRouted="false" />
         <AssociationConnector Association="SHOPModel.FK_Worker_User" ManuallyRouted="false" />
       </Diagram>

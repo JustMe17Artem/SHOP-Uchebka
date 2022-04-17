@@ -54,10 +54,19 @@ namespace Shop.Pages
             {
                 if(currentUser.RoleId == 1)
                 {
-                    order.StatusOrderId = 3;
-                    order.WorkerId = currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault().Id;
-                    DB_Connection.connection.SaveChanges();
-                    NavigationService.Navigate(new OrderPage(order, currentUser));
+                    if(order.StatusOrderId == 1)
+                    {
+                        order.StatusOrderId = 3;
+                        order.WorkerId = currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault().Id;
+                        DB_Connection.connection.SaveChanges();
+                        NavigationService.Navigate(new OrderPage(order, currentUser));
+                    }
+                    else
+                    {
+                        NavigationService.Navigate(new OrderPage(order, currentUser));
+                        //MessageBox.Show($"Заказ в статусе {order.StatusOrder.Name}, вы можете просматривать лишь новые заказы") ;
+                    }
+                    
                 }
                 else if(currentUser.RoleId == 3)
                 {

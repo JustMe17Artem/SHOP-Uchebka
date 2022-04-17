@@ -1,0 +1,110 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using Shop.my_ado;
+using Shop.DataBase;
+
+namespace Shop.Pages
+{
+    /// <summary>
+    /// Interaction logic for AddIntakePage.xaml
+    /// </summary>
+    public partial class AddIntakePage : Page
+    {
+        public static Worker currentWorker;
+        public static User currentUser;
+        public static Supplier supplier;
+        public List<ProductIntake> Intakes { get; set; }
+        public List<Product> Products { get; set; }
+        public List<Supplier> Suppliers { get; set; }
+        public List<ProductIntakeProduct> IntakeProducts { get; set; }
+
+        public ProductIntake Intake { get; set; }
+        public AddIntakePage(User user)
+        {
+            InitializeComponent();
+            Intake = new ProductIntake();
+            currentUser = user;
+            currentWorker = user.Worker.Where(c => c.UserId == user.Id).FirstOrDefault();
+            Products = DataAccess.GetProducts().ToList();
+            IntakeProducts = new List<ProductIntakeProduct>();
+            DPDate.SelectedDate = DateTime.Now;
+
+            DGProducts.SelectionMode = DataGridSelectionMode.Extended;
+
+            Suppliers = DataAccess.GetSuppliers().ToList();
+            CBSupplier.SelectedIndex = 0;
+            DataContext = this;
+        }
+        public AddIntakePage(ProductIntake intake)
+        {
+            InitializeComponent();
+            
+        }
+
+        private void BtnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            if (DGProducts.Items.Count != 0)
+            {
+                Intake.SupplierId = supplier.Id;
+                Intake.TotalAmount = decimal.Parse(TbSum.Text);
+                Intake.Data = (DateTime)DPDate.SelectedDate;
+                Intake.ProductIntakeProduct = IntakeProducts;
+                Intake.StatusIntakeId = 1;
+                DataAccess.SaveProductIntake(Intake);
+            }
+            else
+                MessageBox.Show("Выберите поставленные продукты");
+        }
+
+        private void BtnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            var product = CBProduct.SelectedItem as Product;
+            IntakeProducts.Add(new ProductIntakeProduct() { ProductId = product.Id, Product = product });
+
+            Products.Remove(product);
+
+            DGProducts.Items.Refresh();
+        }
+
+        private void DGProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void DGProducts_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            if (DGProducts.SelectedItem != null)
+            {
+                (sender as DataGrid).RowEditEnding -= DGProducts_RowEditEnding;
+                (sender as DataGrid).CommitEdit();
+                (sender as DataGrid).Items.Refresh();
+
+                decimal sum = 0;
+                foreach (ProductIntakeProduct product in DGProducts.ItemsSource)
+                {
+                    sum += product.Sum;
+                }
+                TbSum.Text = sum.ToString();
+                (sender as DataGrid).RowEditEnding += DGProducts_RowEditEnding;
+            }
+            return;
+        }
+
+        private void CBSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            supplier = CBSupplier.SelectedItem as Supplier;
+        }
+    }
+}

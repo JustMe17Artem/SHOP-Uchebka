@@ -19,10 +19,8 @@ namespace Shop.my_ado
         public int ProductIntakeId { get; set; }
         public int Count { get; set; }
         public decimal PriceUnit { get; set; }
-        public int StatusIntakeId { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual ProductIntake ProductIntake { get; set; }
-        public virtual StatusIntake StatusIntake { get; set; }
     }
 }

@@ -58,7 +58,6 @@ namespace Shop.Pages
             currentClient = user.Client.Where(c => c.UserId == user.Id).FirstOrDefault();
             DPDate.SelectedDate = Order.Date;
             Products = DataAccess.GetProducts().ToList();
-            StatusOrders = DataAccess.GetStatusOrder().ToList();
             ProductOrders = Order.ProductOrder.ToList();
             DGProducts.ItemsSource = ProductOrders;
             decimal sum = 0;
@@ -67,19 +66,26 @@ namespace Shop.Pages
                 sum += productOrder.Sum;
             }
             TBSum.Text = sum.ToString();
-            //DB_Connection.connection.SaveChanges();
             BtnCreate.Visibility = Visibility.Hidden;
             DataContext = this;
 
             if (user.RoleId == 1)
             {
+                if(order.StatusOrderId == 3)
+                {
+                    BtnDecline.Visibility = Visibility.Visible;
+                    BtnAccept.Visibility = Visibility.Visible;
+                }
+                else if(order.StatusOrderId == 6 || order.StatusOrderId == 5 || order.StatusOrderId == 4 || order.StatusOrderId == 2)
+                {
+                    BtnDecline.Visibility = Visibility.Hidden;
+                    BtnAccept.Visibility = Visibility.Hidden;
+                }
                 CBProduct.Visibility = Visibility.Hidden;
                 BtnCreate.Visibility = Visibility.Hidden;
                 BtnPay.Visibility = Visibility.Hidden;
                 BtnAdd.Visibility = Visibility.Hidden;
                 BtnRemove.Visibility = Visibility.Hidden;
-                BtnDecline.Visibility = Visibility.Visible;
-                BtnAccept.Visibility = Visibility.Visible;
                 DPDate.Visibility = Visibility.Hidden;
                 clCount.IsReadOnly = true;
             }
@@ -112,6 +118,7 @@ namespace Shop.Pages
                     BtnDecline.Visibility = Visibility.Hidden;
                     BtnAccept.Visibility = Visibility.Hidden;
                 }
+
                 else if (order.StatusOrderId != 2 && order.StatusOrderId !=1)
                 {
                     BtnPay.Visibility = Visibility.Hidden;
@@ -134,7 +141,7 @@ namespace Shop.Pages
             }
             if (DGProducts.Items.Count != 0)
             {
-                if(DataAccess.GetOrders().Where(o => o.Id == Order.Id).Count() == 1)
+                if (DataAccess.GetOrders().Where(o => o.Id == Order.Id).Count() == 1)
                 {
                     DB_Connection.connection.SaveChanges();
                     MessageBox.Show("Заказ переоформлен");
@@ -144,6 +151,7 @@ namespace Shop.Pages
                     DataAccess.AddOrder(Order, currentClient);
                     MessageBox.Show("Заказ оформлен");
                 }
+
                 NavigationService.Navigate(new ProductsListPage(currentUser));
             }
             
@@ -154,7 +162,7 @@ namespace Shop.Pages
         {
             var product = CBProduct.SelectedItem as Product;
             ProductOrders.Add(new ProductOrder { Product = product, ProductId = product.Id});
-            //Products.Remove(product);
+            Products.Remove(product);
             DGProducts.Items.Refresh();
         }
 
