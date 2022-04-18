@@ -160,7 +160,6 @@ namespace Shop.Pages
         }
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
-            Ex.Text = currentClient.FIO;
             var product = CBProduct.SelectedItem as Product;
             ProductOrders.Add(new ProductOrder { Product = product, ProductId = product.Id});
             Products.Remove(product);

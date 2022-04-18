@@ -37,7 +37,10 @@ namespace Shop.Pages
                     Properties.Settings.Default.Login = null;
                 Properties.Settings.Default.Save();
                 MessageBox.Show("WELCUM");
-                NavigationService.Navigate(new ProductsListPage(DataAccess.GetUser(TBLogin.Text, TBPassword.Password)));
+                if (DataAccess.GetUser(TBLogin.Text, TBPassword.Password).RoleId == 2)
+                    NavigationService.Navigate(new IntakesPage(DataAccess.GetUser(TBLogin.Text, TBPassword.Password).Worker.Where( w => w.UserId == DataAccess.GetUser(TBLogin.Text, TBPassword.Password).Id).FirstOrDefault()));
+                else
+                    NavigationService.Navigate(new ProductsListPage(DataAccess.GetUser(TBLogin.Text, TBPassword.Password)));
             }
             else if(DateTime.Now < DataAccess.GetLastBanSession().DateEnd)
                 MessageBox.Show($"Бан закончится {DataAccess.GetLastBanSession().DateEnd}");

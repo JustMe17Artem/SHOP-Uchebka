@@ -32,6 +32,16 @@
                 Click="BtnCreate_Click"  
                 VerticalAlignment="Center"/>
 
+        <Button x:Name="BtnBack" 
+                Content="Назад"
+                Grid.Row="4"
+                Grid.Column="0"
+                Width="100"
+                Height="30"
+                Click="BtnBack_Click"  
+                VerticalAlignment="Center"/>
+
+
         <TextBlock Text="Дата" 
                    Grid.Row="1"
                    FontSize="15"
@@ -49,14 +59,8 @@
                    Grid.Row="2"
                    FontSize="15"
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
-
-        <TextBlock Text="Поставщик" 
-                   Grid.Row="4"
-                   x:Name="TBSupplier"
-                   FontSize="15"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"/>
+                   VerticalAlignment="Center"
+                   x:Name="Tbl"/>
 
         <ComboBox x:Name="CBSupplier"
                   Grid.Row="2" Grid.Column="1"
@@ -91,6 +95,11 @@
                     Content="Добавить"
                     Margin="10,0,0,0"
                     Click="BtnAdd_Click"/>
+
+            <Button x:Name="BtnAccept" 
+                    Content="Принять"
+                    Margin="10,0,0,0"
+                    Click="BtnAccept_Click"/>
         </StackPanel>
         
         <DataGrid Grid.Row="3" x:Name="DGProducts" 
@@ -99,7 +108,7 @@
                   CanUserDeleteRows="True" 
                   AutoGenerateColumns="False" 
                   SelectionChanged="DGProducts_SelectionChanged"
-                  ItemsSource="{Binding IntakeProducts, Mode=TwoWay}" CanUserSortColumns="False"
+                  ItemsSource="{Binding ProductIntakes, Mode=TwoWay}" CanUserSortColumns="False"
                   CanUserAddRows="False"
                   RowEditEnding="DGProducts_RowEditEnding">
             <DataGrid.Columns>

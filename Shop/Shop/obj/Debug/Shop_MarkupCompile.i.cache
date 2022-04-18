@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\ИМЕННО ОН\Desktop\Uchebka\Shop\Shop\App.xaml
-91633075044
+10-300472365
 2-657557182
-3930620238
+40-265788437
 18-2023440107
-MainWindow.xaml;Pages\AddIntakePage.xaml;Pages\AddProductPage.xaml;Pages\AuthoPage.xaml;Pages\OrderPage.xaml;Pages\OrdersPage.xaml;Pages\ProductEditPage.xaml;Pages\ProductsListPage.xaml;Pages\RegPage.xaml;
+MainWindow.xaml;Pages\AddIntakePage.xaml;Pages\AddProductPage.xaml;Pages\AuthoPage.xaml;Pages\IntakesPage.xaml;Pages\OrderPage.xaml;Pages\OrdersPage.xaml;Pages\ProductEditPage.xaml;Pages\ProductsListPage.xaml;Pages\RegPage.xaml;
 
-False
+True
 

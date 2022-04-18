@@ -24,11 +24,11 @@ namespace Shop.Pages
     {
         public static Worker currentWorker;
         public static User currentUser;
+        public List<ProductIntakeProduct> ProductIntakes { get; set; }
         public static Supplier supplier;
         public List<ProductIntake> Intakes { get; set; }
         public List<Product> Products { get; set; }
         public List<Supplier> Suppliers { get; set; }
-        public List<ProductIntakeProduct> IntakeProducts { get; set; }
 
         public ProductIntake Intake { get; set; }
         public AddIntakePage(User user)
@@ -38,19 +38,41 @@ namespace Shop.Pages
             currentUser = user;
             currentWorker = user.Worker.Where(c => c.UserId == user.Id).FirstOrDefault();
             Products = DataAccess.GetProducts().ToList();
-            IntakeProducts = new List<ProductIntakeProduct>();
+            ProductIntakes = new List<ProductIntakeProduct>();
             DPDate.SelectedDate = DateTime.Now;
-
+            BtnAdd.Visibility = Visibility.Visible;
             DGProducts.SelectionMode = DataGridSelectionMode.Extended;
 
             Suppliers = DataAccess.GetSuppliers().ToList();
             CBSupplier.SelectedIndex = 0;
             DataContext = this;
         }
-        public AddIntakePage(ProductIntake intake)
+        public AddIntakePage(ProductIntake intake, Worker worker)
         {
             InitializeComponent();
-            
+            Intake = intake;
+            currentWorker = worker;
+            DPDate.SelectedDate = Intake.Data;
+            ProductIntakes = Intake.ProductIntakeProduct.ToList();
+            DGProducts.ItemsSource = ProductIntakes;
+            decimal sum = 0;
+            if (currentWorker.User.RoleId == 1)
+                BtnAccept.Visibility = Visibility.Visible;
+            else
+                BtnAccept.Visibility = Visibility.Hidden;
+            foreach (ProductIntakeProduct productOrder in ProductIntakes)
+            {
+                sum += productOrder.Sum;
+            }
+            TbSum.Text = sum.ToString();
+            BtnAdd.Visibility = Visibility.Hidden;
+            BtnCreate.Visibility = Visibility.Hidden;
+            CBSupplier.Visibility = Visibility.Hidden;
+            CBProduct.Visibility = Visibility.Hidden;
+            Tbl.Visibility = Visibility.Hidden;
+            BtnCreate.Visibility = Visibility.Hidden;
+            DataContext = this;
+
         }
 
         private void BtnCreate_Click(object sender, RoutedEventArgs e)
@@ -60,9 +82,9 @@ namespace Shop.Pages
                 Intake.SupplierId = supplier.Id;
                 Intake.TotalAmount = decimal.Parse(TbSum.Text);
                 Intake.Data = (DateTime)DPDate.SelectedDate;
-                Intake.ProductIntakeProduct = IntakeProducts;
-                Intake.StatusIntakeId = 1;
-                
+                Intake.ProductIntakeProduct = ProductIntakes;
+                Intake.StatusIntakeId = 2;
+                MessageBox.Show("Документ на поставку составлен");
                 DataAccess.SaveProductIntake(Intake);
             }
             else
@@ -72,7 +94,7 @@ namespace Shop.Pages
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
         {
             var product = CBProduct.SelectedItem as Product;
-            IntakeProducts.Add(new ProductIntakeProduct() { ProductId = product.Id, Product = product });
+            ProductIntakes.Add(new ProductIntakeProduct() { ProductId = product.Id, Product = product, PriceUnit = Convert.ToDecimal(product.Price)});
 
             Products.Remove(product);
 
@@ -106,6 +128,19 @@ namespace Shop.Pages
         private void CBSupplier_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             supplier = CBSupplier.SelectedItem as Supplier;
+        }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new IntakesPage(currentWorker));
+        }
+
+        private void BtnAccept_Click(object sender, RoutedEventArgs e)
+        {
+            Intake.StatusIntakeId = 1;
+            DB_Connection.connection.SaveChanges();
+            MessageBox.Show("Поставка принята");
+            NavigationService.Navigate(new IntakesPage(currentWorker));
         }
     }
 }

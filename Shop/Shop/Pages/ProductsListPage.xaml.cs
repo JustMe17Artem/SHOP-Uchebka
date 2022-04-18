@@ -38,13 +38,12 @@ namespace Shop.Pages
             {
                 BtnOrders.Visibility = Visibility.Hidden;
                 BtnAdd.Visibility = Visibility.Hidden;
-                BtnNewIntake.Visibility = Visibility.Hidden;
+                BtnIntakes.Visibility = Visibility.Hidden;
             }
             else if(user.RoleId == 1)
             {
                 BtnOrder.Visibility = Visibility.Hidden;
                 BtnMyOrders.Visibility = Visibility.Hidden;
-                BtnNewIntake.Visibility = Visibility.Hidden;
             }
             else if(user.RoleId == 2)
             {
@@ -202,6 +201,11 @@ namespace Shop.Pages
         private void BtnNewIntake_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new AddIntakePage(currentUser));
+        }
+
+        private void BtnIntakes_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new IntakesPage(currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault()));
         }
     }
 }

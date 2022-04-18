@@ -8,6 +8,6 @@ namespace Shop.my_ado
 {
     public partial class ProductIntakeProduct
     {
-        public decimal Sum => Count * (int)Product.Price;
+        public decimal Sum => Count * PriceUnit;
     }
 }

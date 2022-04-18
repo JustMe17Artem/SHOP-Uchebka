@@ -99,16 +99,17 @@
                     HorizontalAlignment="Right"
                     Width="90"/>
 
-            <Button x:Name="BtnNewIntake"
-                    Content="Новая поставка" 
+            <Button x:Name="BtnIntakes"
+                    Content="Поставки" 
                     Foreground="Black"
-                    Grid.Column="3"
+                    Grid.Column="2"
                     Background="#FF553026"
                     Grid.Row="1"
-                    Margin="0,9,100,10"
-                    Visibility="Visible"
-                    Click="BtnNewIntake_Click" 
-                    Width="90" RenderTransformOrigin="1.671,0.906"/>
+                    Margin="40,10,-90,10"
+                    Click="BtnIntakes_Click" 
+                    HorizontalAlignment="Right"
+                    Width="90"/>
+
 
             <Button x:Name="BtnOrder"
                     Content="Заказать" 

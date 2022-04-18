@@ -130,6 +130,8 @@ namespace Shop.DataBase
             }
         }
 
+
+
         public static ObservableCollection<ProductIntake> GetProductIntakes()
         {
             return new ObservableCollection<ProductIntake>(DB_Connection.connection.ProductIntake);
