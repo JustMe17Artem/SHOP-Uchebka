@@ -60,6 +60,10 @@ namespace Shop.Pages
                 BtnAccept.Visibility = Visibility.Visible;
             else
                 BtnAccept.Visibility = Visibility.Hidden;
+            if(Intake.StatusIntakeId == 1)
+                BtnAccept.Visibility = Visibility.Hidden;
+            else
+                BtnAccept.Visibility = Visibility.Visible;
             foreach (ProductIntakeProduct productOrder in ProductIntakes)
             {
                 sum += productOrder.Sum;

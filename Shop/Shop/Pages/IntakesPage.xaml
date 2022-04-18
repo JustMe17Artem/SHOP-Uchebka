@@ -44,6 +44,18 @@
 
         </StackPanel>
 
+        <Button x:Name="BtnBack"
+                Content="Назад" 
+                Grid.Column="0" 
+                Grid.Row="7"
+                Grid.ColumnSpan="2"
+                Height="25" 
+                Width="100"
+                VerticalAlignment="Bottom"
+                HorizontalAlignment="Left"
+                Click="BtnBack_Click"/>
+
+
         <DataGrid x:Name="DGIntakes"
                   Grid.Row="2" 
                   Grid.Column="1"

@@ -52,5 +52,10 @@ namespace Shop.Pages
             var selectedIntake = DGIntakes.SelectedItem as ProductIntake;
             currentIntake = selectedIntake;
         }
+
+        private void BtnBack_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new ProductsListPage(currentWorker.User));
+        }
     }
 }
