@@ -99,8 +99,8 @@
                     HorizontalAlignment="Right"
                     Width="90"/>
 
-            <Button x:Name="BtnIntakes"
-                    Content="Поставки" 
+            <Button x:Name="BtnIntake"
+                    Content="Новая поставка" 
                     Foreground="Black"
                     Grid.Column="2"
                     Background="#FF553026"
@@ -109,6 +109,19 @@
                     Click="BtnIntakes_Click" 
                     HorizontalAlignment="Right"
                     Width="90"/>
+
+
+            <Button x:Name="BtnIntakes"
+                    Content="Постепления" 
+                    Foreground="Black"
+                    Grid.Column="2"
+                    Background="#FF553026"
+                    Grid.Row="1"
+                    Margin="40,10,-190,10"
+                    Click="BtnIntakes_Click_1" 
+                    HorizontalAlignment="Right"
+                    Width="90"/>
+
 
 
             <Button x:Name="BtnOrder"

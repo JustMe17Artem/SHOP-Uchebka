@@ -30,7 +30,13 @@
                 Grid.Row="3"
                 Margin="0,10,-0,0"
                 HorizontalAlignment="Center"/>-->
-        
+        <TextBlock Text="Заказы"
+                   Grid.ColumnSpan="2"
+                   FontSize="25"
+                   Grid.Column="1"
+                   TextAlignment="Center"
+                   Margin="-50,0,0,0"/>
+
         <Button x:Name="BtnOpen" 
                 Content="Посмотреть"
                 Grid.Column="1"
@@ -52,7 +58,9 @@
                 Click="BtnBack_Click"/>
 
         <DataGrid x:Name="DGOrders" Grid.Row="2" Grid.Column="1" ItemsSource="{Binding Orders}" 
-                  AutoGenerateColumns="False" IsReadOnly="True" >
+                  AutoGenerateColumns="False" IsReadOnly="True"
+                  Width="680"
+                  Height="231">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Номер заказа" 
                                     x:Name="CLnumber"

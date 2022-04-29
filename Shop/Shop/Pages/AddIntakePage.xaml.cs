@@ -42,7 +42,7 @@ namespace Shop.Pages
             DPDate.SelectedDate = DateTime.Now;
             BtnAdd.Visibility = Visibility.Visible;
             DGProducts.SelectionMode = DataGridSelectionMode.Extended;
-
+            BtnAccept.Visibility = Visibility.Hidden;
             Suppliers = DataAccess.GetSuppliers().ToList();
             CBSupplier.SelectedIndex = 0;
             DataContext = this;
@@ -72,6 +72,7 @@ namespace Shop.Pages
             BtnAdd.Visibility = Visibility.Hidden;
             BtnCreate.Visibility = Visibility.Hidden;
             CBSupplier.Visibility = Visibility.Hidden;
+            CBSupplier.SelectedItem = intake.Supplier.Name;
             CBProduct.Visibility = Visibility.Hidden;
             Tbl.Visibility = Visibility.Hidden;
             BtnCreate.Visibility = Visibility.Hidden;
@@ -136,7 +137,7 @@ namespace Shop.Pages
 
         private void BtnBack_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new IntakesPage(currentWorker));
+            NavigationService.Navigate(new ProductsListPage(currentUser));
         }
 
         private void BtnAccept_Click(object sender, RoutedEventArgs e)

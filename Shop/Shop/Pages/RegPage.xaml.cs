@@ -103,7 +103,7 @@ namespace Shop.Pages
                 var lastUser = users.Last();
                 Client clientToAdd = new Client();
                 clientToAdd.FIO = TBFIO.Text;
-                clientToAdd.UserId = lastUser.Id;
+                clientToAdd.UserId = lastUser.Id+1;
                 if (RBtnMale.IsPressed)
                     clientToAdd.GenderId = 1;
                 else

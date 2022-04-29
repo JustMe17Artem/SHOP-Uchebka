@@ -33,24 +33,27 @@ namespace Shop.Pages
             LVProducts.ItemsSource = products;
             DataContext = this;
             currentUser = user;
-            TBlFio.Text = currentUser.Login;
             if (user.RoleId == 3)
             {
                 BtnOrders.Visibility = Visibility.Hidden;
                 BtnAdd.Visibility = Visibility.Hidden;
+                BtnIntake.Visibility = Visibility.Hidden;
                 BtnIntakes.Visibility = Visibility.Hidden;
             }
             else if(user.RoleId == 1)
             {
                 BtnOrder.Visibility = Visibility.Hidden;
                 BtnMyOrders.Visibility = Visibility.Hidden;
+                BtnIntake.Visibility = Visibility.Hidden;
             }
             else if(user.RoleId == 2)
             {
                 BtnOrders.Visibility = Visibility.Hidden;
                 BtnAdd.Visibility = Visibility.Hidden;
-                BtnAdd.Visibility = Visibility.Hidden;
+                BtnOrder.Visibility = Visibility.Hidden;
                 BtnMyOrders.Visibility = Visibility.Hidden;
+                BtnIntakes.Visibility = Visibility.Hidden;
+
             }
             var allUnits = new ObservableCollection<Unit>(DB_Connection.connection.Unit.ToList());
             allUnits.Insert(0, new Unit() { Id = -1, Name = "Все" });
@@ -122,11 +125,12 @@ namespace Shop.Pages
 
         private void LVProducts_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (currentUser.RoleId != 3)
+            if (currentUser.RoleId == 1)
             {
                 var selectedProduct = LVProducts.SelectedItem as Product;
                 NavigationService.Navigate(new ProductEditPage(selectedProduct));
             }
+            
         }
 
         private void BtnAdd_Click(object sender, RoutedEventArgs e)
@@ -204,6 +208,11 @@ namespace Shop.Pages
         }
 
         private void BtnIntakes_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new AddIntakePage(currentUser));
+        }
+
+        private void BtnIntakes_Click_1(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new IntakesPage(currentUser.Worker.Where(w => w.UserId == currentUser.Id).FirstOrDefault()));
         }
