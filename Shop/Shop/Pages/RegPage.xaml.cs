@@ -92,6 +92,7 @@ namespace Shop.Pages
                 EmailError.Text = "Некорректный адрес эл. почты";
         }
 
+
         private void BtnRegistrate_Click(object sender, System.Windows.RoutedEventArgs e)
         {
             if (LoginError.Text.Length == 0 && PasswordError.Text.Length == 0 && FIOError.Text.Length == 0 && EmailError.Text.Length == 0  && SexError.Text.Length == 0 && PhoneError.Text.Length == 0)
